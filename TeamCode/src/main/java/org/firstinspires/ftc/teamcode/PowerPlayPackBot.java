@@ -55,7 +55,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
  * Whitefield Robotics - FTC 2022-23 Power Play
  * This code defines the hardware on our robot.
  */
-// Might be ready for season
+// Ready I think
 public class PowerPlayPackBot {
 
 
