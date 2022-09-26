@@ -50,7 +50,7 @@ import java.util.concurrent.TimeUnit;
 public class PwrPlay_Rover extends OpMode {
 
     /* Declare OpMode members. */
-    PowerPlayPackBot robot = new PowerPlayPackBot(); // TODO: Finish converting this file
+    PowerPlayPackBot robot = new PowerPlayPackBot();
 
     //variables
     double heading;
@@ -77,8 +77,6 @@ public class PwrPlay_Rover extends OpMode {
     boolean isHolding = true;
 
     boolean canLift = false;
-
-    double targetLiftCt = FreightFrenzyPackBot.bottomLevelHeight;
 
     RevBlinkinLedDriver.BlinkinPattern defPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_RAINBOW_PALETTE;
 
@@ -183,6 +181,7 @@ public class PwrPlay_Rover extends OpMode {
 //        if (gamepad2.right_stick_button)
 //            lifty_speed = 1;
 
+/*
         if (rotisseriePos == 0.0) {
             robot.dcMotor5.setPower(-gamepad2.right_stick_y);
             robot.dcMotor6.setPower(-gamepad2.right_stick_y);
@@ -203,7 +202,7 @@ public class PwrPlay_Rover extends OpMode {
 //            robot.rotisserie.setPosition(1);
             rotisseriePos = 1.0;
         }
-        robot.rotisserie.setPosition(rotisseriePos);
+        robot.rotisserie.setPosition(rotisseriePos); */
  /*       if (Math.abs(gamepad2.left_trigger) > 0.85) {
             robot.flywheels(1.0);
             robot.blinkin.setPattern(RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_RED);

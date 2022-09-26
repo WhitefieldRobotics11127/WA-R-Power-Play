@@ -59,35 +59,6 @@ import java.util.List;
 
 
 /** PSUEDOCODE:
- * Start on the Storage Unit side
- *
- * Scan Barcode
- *
- * Strafe right 24in
- * Drive forward 24in (dist will change once we have more details about bot design)
- * [Place Block]
- *
- * Drive backward 24in (")
- * Strafe left 48in
- *
- * Spin carousel
- *
- * Drive forward 24in to Park
- *
- *
- *
- * Start on the Warehouse side
- *
- * Scan Barcode
- *
- * Strafe left 24in
- * Drive forward 24in (")
- * [Place Block]
- *
- * Drive backward 24in (")
- * Rotate CW 90˚
- * Strafe right a little
- * Drive forward 48in to park in Warehouse
  *
  *
  */
@@ -96,7 +67,7 @@ import java.util.List;
 public class PowerPlayAuto {
 
     private LinearOpMode        myOpMode;       // Access to the OpMode object
-    private FreightFrenzyPackBot myRobot;        // Access to the Robot hardware
+    private PowerPlayPackBot myRobot;        // Access to the Robot hardware
     private HardwareMap         myHardwareMap;
     //private VuforiaTrackables   targets = this.vuforia.loadTrackablesFromAsset("Skystone");        // List of active targets
     /**
@@ -128,17 +99,6 @@ public class PowerPlayAuto {
 
     private double t, tInit;
 
-    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
-    private static final String[] LABELS = {
-            "Ball",
-            "Cube",
-            "Duck",
-            "Marker"
-    };
-
-    private final double lineToHubDist = 15; //inches
-    private final double lineToCarouselDist = 12; //inches
-
     //OpenCV Fields
     public OpenCvWebcam webcam;
     public TSEDeterminationPipeline pipeline;
@@ -146,7 +106,7 @@ public class PowerPlayAuto {
             TSEDeterminationPipeline.TSEPosition.LEFT;
 
 
-    public PowerPlayAuto(LinearOpMode theOpMode, FreightFrenzyPackBot theRobot, HardwareMap theHwMap) {
+    public PowerPlayAuto(LinearOpMode theOpMode, PowerPlayPackBot theRobot, HardwareMap theHwMap) {
         myOpMode = theOpMode;
         myRobot = theRobot;
         myHardwareMap = theHwMap;
@@ -196,497 +156,30 @@ public class PowerPlayAuto {
     public void shutdownTFOD() {
         tfod.shutdown();
     }
-    
-    public String scanBarcode() {
-        double recogX = -1;
-        String recogLabel = "";
-        double screenMidX = 400; //the middle
 
-        if (tfod != null) {
-            // getUpdatedRecognitions() will return null if no new information is available since
-            // the last time that call was made.
-            int timeout = 0;
-            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-            while ((updatedRecognitions == null || updatedRecognitions.size() < 1) && timeout < 5000000) {
-                updatedRecognitions = tfod.getUpdatedRecognitions();
-                if (updatedRecognitions != null) {
-                    for (Recognition recognition : updatedRecognitions) {
-                        if (!recognition.getLabel().equals("Marker"))
-                            updatedRecognitions.remove(recognition);
-
-                    }
-//                    if (updatedRecognitions.size() < 1)
-//                        updatedRecognitions = null;
-                }
-                timeout++;
-            }
-            myOpMode.telemetry.addData("timeout", timeout);
-            myOpMode.telemetry.update();
-
-            if (updatedRecognitions != null) {
-//                myOpMode.telemetry.addData("# Object Detected", updatedRecognitions.size());
-                // step through the list of recognitions and display boundary info.
-                int i = 0;
-                for (Recognition recognition : updatedRecognitions) {
-                    if (recognition.getLabel().equals("Marker")) {
-                        recogX = (recognition.getLeft() + recognition.getRight()) / 2.0;
-//                        recogLabel = recognition.getLabel();
-                    }
-
-//                    recogX = (recognition.getLeft() + recognition.getRight()) / 2.0;
-//                    recogLabel = recognition.getLabel();
-//                    myOpMode.telemetry.addData("label", label);
-                    myOpMode.telemetry.addData("x", recognition.getLeft());
-                    myOpMode.telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                    /*
-                    myOpMode.telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                            recognition.getLeft(), recognition.getTop());
-                    myOpMode.telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                            recognition.getRight(), recognition.getBottom());
-                     */
-                }
-                myOpMode.telemetry.update();
-            } else {
-//                shutdownTFOD();
-                return "Left"; //if its the one the bot can't see. Runs if timeout maxes out
-            }
-        } else {
-            myOpMode.telemetry.addData("TFOD NOT INITIALIZED", "");
-            myOpMode.telemetry.update();
-        }
-//        shutdownTFOD();
-        if (recogX > 0 && recogX < screenMidX) { //if screen left
-            return "Right";
-        } else if (recogX > screenMidX) { //if screen right
-            return "Middle";
-        } else {
-            return "Left";
-        }
-    }
-
-    public void dropBlock(String pos) {
-        double liftSpeed = 0.3;
-
-        if (pos.equals("Left") || pos.equals("Bottom")) {
-            myRobot.moveLift(myOpMode, 0.0, 0.2);
-        }
-        else if (pos.equals("Middle")) {
-            myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieMid);
-            myOpMode.sleep(1500);
-            myRobot.moveLiftUp(myOpMode, FreightFrenzyPackBot.middleLevelHeight, liftSpeed);
-        }
-        else if (pos.equals("Right") || pos.equals("Top")) {
-            myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieMid);
-            myOpMode.sleep(1500);
-            myRobot.moveLiftUp(myOpMode, FreightFrenzyPackBot.topLevelHeight, liftSpeed);
-        }
-        myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieOut);
-        myOpMode.sleep(2000);
-
-        myRobot.rotisserie.setPosition(pos.equals("Left") ? FreightFrenzyPackBot.rotisserieIn : FreightFrenzyPackBot.rotisserieMid);
-        myOpMode.sleep(1000);
-
-        myRobot.moveLiftDown(myOpMode, FreightFrenzyPackBot.bottomLevelHeight, liftSpeed);
-
-        if (!pos.equals("Left")) myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieIn);
-    }
 
     public double getHeading() {
         return myRobot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 
-    public void duckParkDuck(String color) { //Front of bot is the Intake/Duck Spinner. Front starts facing the wall.
+    public void parkNoSignal(){
         double driveSpeed = 0.4;
-        int sleepTime = 500;
-
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 24, (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-//        myRobot.advancedEncoderDrive(myOpMode, lineToCarouselDist, "Forward", driveSpeed);
-        myRobot.driveToDist(myOpMode, "Front", 9, driveSpeed/2);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.spinDuck(myOpMode, color);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, lineToCarouselDist + 12, "Backward", driveSpeed);
-    }
-
-    public void duckParkWarehouse(String color) { //Front Starts facing wall
-        double driveSpeed = 0.4;
-        double rotateSpeed = 0.4;
-        int sleepTime = 500;
-
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 24, (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-//        myRobot.advancedEncoderDrive(myOpMode, lineToCarouselDist, "Forward", driveSpeed);
-        myRobot.driveToDist(myOpMode, "Front", 9, driveSpeed/2);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.spinDuck(myOpMode, color);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, lineToCarouselDist, "Backward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() < 90) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        } else if (color.equals("Blue")){
-            while (getHeading() > -90) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 72, "Forward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 15, (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
-    }
-
-    public void parkWarehouse(String color) { //Front (Intake) Starts facing Warehouse
-        double driveSpeed = 0.4;
-        int sleepTime = 500;
-
-//        myRobot.advancedEncoderDrive(myOpMode, 3, (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-
-//        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
-    }
-
-    public void shipDuckParkDuck(String color) { //Front of bot is the Intake/Duck Spinner. Front starts facing the wall.
-        double driveSpeed = 0.4;
-        double rotateSpeed = 0.4;
         int sleepTime = 400;
 
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 13 : 12.5), "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 1, "Forward", driveSpeed);
 
         myOpMode.sleep(sleepTime);
 
-        myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieOut);
-
-        myOpMode.sleep(4000);
-
-        myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieIn);
-
-//        myOpMode.sleep(sleepTime);
-
-//        myRobot.advancedEncoderDrive(myOpMode, 3, "Forward", driveSpeed); //unsigned
-/*
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() > -85) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() < 85) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
+        myRobot.advancedEncoderDrive(myOpMode, 22.5, "Right", driveSpeed);
 
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 42, "Forward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() < 0) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() > 0) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-*/
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 3, "Forward", driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 50, (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-        myRobot.driveToDist(myOpMode, (color.equals("Red") ? "Right" : "Left"), (color.equals("Red") ? 2 : 3.5), driveSpeed/2);
-        myOpMode.sleep(sleepTime);
-
-//        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 13.5 : 8.5), "Forward", driveSpeed/2);
-        myRobot.driveToDist(myOpMode, "Front", (color.equals("Red") ? 6.77 : 7.5), driveSpeed/2);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.spinDuck(myOpMode, color);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 15 : 13), "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 22.5, "Forward", driveSpeed);
     }
 
-    public void readShipDuckParkDuck(String color) { //Front of bot is the Intake/Duck Spinner. Front starts facing the wall.
-        double driveSpeed = 0.4;
-        double rotateSpeed = 0.4;
-        int sleepTime = 300;
-        String markerPos = "Left";
+    public void liftUp(){}
 
-//        myOpMode.sleep(2000); //give TFOD time to init
-        markerPos = scanSaved();
-        myOpMode.telemetry.addData("Marker Pos", markerPos);
-        myOpMode.telemetry.update();
-
-        myRobot.advancedEncoderDrive(myOpMode, 25, "Backward", driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Blue")) {
-            while (getHeading() < 60) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() > -45) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-        myOpMode.sleep(sleepTime);
-
-//        myRobot.advancedEncoderDrive(myOpMode, 2, "Backward", driveSpeed);
-//
-//        myOpMode.sleep(sleepTime);
-//
-//        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 19.5 : 30), (color.equals("Red") ? "Left" : "Right"), driveSpeed);
-//
-//        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Blue") ? 6.77 : 1), "Backward", driveSpeed*.75);
-
-        myOpMode.sleep(sleepTime);
-
-        dropBlock(markerPos);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Blue") ? 7 : 2), "Forward", driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() < -15) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() > 13) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            myRobot.advancedEncoderDrive(myOpMode, 5, "Forward", driveSpeed);
-            myOpMode.sleep(sleepTime);
-        }
-
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Blue") ? 15 : 20), (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-        myRobot.driveToDist(myOpMode, (color.equals("Red") ? "Right" : "Left"), (color.equals("Red") ? 2 : 2), driveSpeed/2);
-        myOpMode.sleep(sleepTime);
-
-//        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 13.5 : 8.5), "Forward", driveSpeed/2);
-        myRobot.driveToDist(myOpMode, "Front", (color.equals("Red") ? 6.77 : 7.3), driveSpeed/2);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.spinDuck(myOpMode, color);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 13 : 13), "Backward", driveSpeed);
-    }
-
-    public void shipDuckParkWarehouse(String color) {
-        double driveSpeed = 0.4;
-        double rotateSpeed = 0.4;
-        int sleepTime = 500;
-
-        myRobot.advancedEncoderDrive(myOpMode, 24 + lineToHubDist, "Backward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieOut);
-
-        myOpMode.sleep(1000);
-
-        myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieIn);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, lineToHubDist, "Forward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() > -90) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() < 90) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() < 0) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() > 0) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-
-        myOpMode.sleep(sleepTime);
-
-//        myRobot.advancedEncoderDrive(myOpMode, lineToCarouselDist, "Forward", driveSpeed);
-        myRobot.driveToDist(myOpMode, "Front", 9, driveSpeed/2);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.spinDuck(myOpMode, color);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, lineToCarouselDist, "Backward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() < 90) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() > -90) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 72, "Forward", driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 15, (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 20, "Forward", driveSpeed);
-    }
-
-    public void readShipParkWarehouse(String color) {
-        double driveSpeed = 0.4;
-        double rotateSpeed = 0.25;
-        int sleepTime = 500;
-        String markerPos = "Left";
-
-//        myOpMode.sleep(2000); //give TFOD time to init
-        markerPos = scanSaved();
-        myOpMode.telemetry.addData("Marker Pos", markerPos);
-        myOpMode.telemetry.update();
-
-        myRobot.advancedEncoderDrive(myOpMode, 1, "Backward", driveSpeed);
-//            myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            myOpMode.sleep(sleepTime);
-            myRobot.advancedEncoderDrive(myOpMode, 6, "Right", driveSpeed);
-            myOpMode.sleep(sleepTime);
-        }
-
-        myRobot.advancedEncoderDrive(myOpMode, 20, "Backward", driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-
-        if (color.equals("Red")) {
-            while (getHeading() < 60) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() > -45) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 3 : 3.5), "Backward", driveSpeed/2);
-
-        myOpMode.sleep(sleepTime);
-
-        dropBlock(markerPos);
-
-        myOpMode.sleep(sleepTime);
-
-        if (color.equals("Red")) {
-            while (getHeading() < 85) {
-                myRobot.rotateCW(rotateSpeed);
-            }
-        } else {
-            while (getHeading() > -85) {
-                myRobot.rotateCCW(rotateSpeed);
-            }
-        }
-        myRobot.driveStop();
-
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, (color.equals("Red") ? 36 : 34.5), (color.equals("Red") ? "Right" : "Left"), driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-//        myRobot.driveToDist(myOpMode, (color.equals("Red") ? "Right" : "Left"), (color.equals("Red") ? 0.25 : 0.25), driveSpeed/2);
-//        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 35, "Forward", driveSpeed);
-
-    }
+    public void liftDown(){}
 
     public void initCV() {
         // Documentation omitted for brevity - please see ocvWebcamExample.java for documentation
@@ -770,7 +263,7 @@ public class PowerPlayAuto {
 
     /**
      * What follows is the OpenCV Pipeline for processing the images from the webcam
-     * and extracting the position of out TSE. This code, and the rest of the OpenCV
+     * and extracting the position of our TSE. This code, and the rest of the OpenCV
      * code, was adapted from skystone example code found at https://github.com/OpenFTC/EasyOpenCV.
      *
      * I really don't know why the pipeline class exists inside another class, but this

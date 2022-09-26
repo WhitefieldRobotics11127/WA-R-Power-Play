@@ -69,7 +69,6 @@ public class PowerPlayPackBot {
     public DcMotor dcMotor5 = null;
     public DcMotor dcMotor6 = null;
     public DcMotor dcMotor7 = null;
-    public DcMotor dcMotor8 = null;
 
     public VoltageSensor vs;
 
@@ -129,9 +128,9 @@ public class PowerPlayPackBot {
     public static final double rotisserieIn = 0.0;
 
     // Not sure if we need these
-    public static final double bottomLevelHeight = 50;
-    public static final double middleLevelHeight = 777; //encoder counts
-    public static final double topLevelHeight = 1553; //encoder counts
+//    public static final double bottomLevelHeight = 50;
+//    public static final double middleLevelHeight = 777; //encoder counts
+//    public static final double topLevelHeight = 1553; //encoder counts
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;
@@ -145,6 +144,8 @@ public class PowerPlayPackBot {
     /* Constructor */
     public PowerPlayPackBot() {
     }
+
+    // public PowerPlayVobot() {}
 
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap ahwMap) {
