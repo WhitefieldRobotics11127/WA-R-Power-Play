@@ -177,10 +177,6 @@ public class PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 22.5, "Forward", driveSpeed);
     }
 
-    public void liftUp(){}
-
-    public void liftDown(){}
-
     public void initCV() {
         // Documentation omitted for brevity - please see ocvWebcamExample.java for documentation
         int cameraMonitorViewId = myHardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", myHardwareMap.appContext.getPackageName());

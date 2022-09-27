@@ -268,7 +268,7 @@ public class FreightFrenzyAuto {
         double liftSpeed = 0.3;
 
         if (pos.equals("Left") || pos.equals("Bottom")) {
-            myRobot.moveLift(myOpMode, 0.0, 0.2);
+            myRobot.moveLiftUp(myOpMode, 0.0, 0.2);
         }
         else if (pos.equals("Middle")) {
             myRobot.rotisserie.setPosition(FreightFrenzyPackBot.rotisserieMid);
