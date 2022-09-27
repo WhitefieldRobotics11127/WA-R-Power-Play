@@ -285,6 +285,7 @@ public class PowerPlayAuto {
          */
         static final Scalar BLUE = new Scalar(0, 0, 255);
         static final Scalar GREEN = new Scalar(0, 255, 0);
+        static final Scalar RED = new Scalar(255, 0, 0);
 
         /*
          * The core values which define the location and size of the sample regions
@@ -313,6 +314,7 @@ public class PowerPlayAuto {
          *   ------------------------------------
          *
          */
+
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,
                 REGION1_TOPLEFT_ANCHOR_POINT.y);
