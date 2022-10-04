@@ -145,7 +145,7 @@ public class PowerPlayAuto {
         tfodParameters.isModelTensorFlow2 = true;
         tfodParameters.inputSize = 1080;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
+//        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
 
         if (tfod != null) {
             tfod.activate();
