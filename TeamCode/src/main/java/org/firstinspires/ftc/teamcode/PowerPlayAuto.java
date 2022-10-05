@@ -228,11 +228,11 @@ public class PowerPlayAuto {
 //        myOpMode.telemetry.addData("CV Analysis", savedAnalysis);
 //        myOpMode.telemetry.update();
         switch (savedAnalysis) {
-            case LEFT: {
+            case RED: {
                 return "Left";
-            } case RIGHT: {
+            } case BLUE: {
                 return "Right";
-            } case CENTER: {
+            } case GREEN: {
                 return "Middle";
             }
         }
@@ -275,9 +275,9 @@ public class PowerPlayAuto {
          */
         public enum TSEPosition
         {
-            LEFT,
-            CENTER,
-            RIGHT
+            RED,
+            GREEN,
+            BLUE
         }
 
         /*
@@ -285,16 +285,15 @@ public class PowerPlayAuto {
          */
         static final Scalar BLUE = new Scalar(0, 0, 255);
         static final Scalar GREEN = new Scalar(0, 255, 0);
-        static final Scalar RED = new Scalar(255, 0, 0);
 
         /*
          * The core values which define the location and size of the sample regions
          * TODO: Check these points w/ our camera position
          */
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(90,200);
-        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(300,200);
-        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(490,200);
-        static final int REGION_WIDTH = 50;
+        // static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(300,200);
+        // static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(490,200);
+        static final int REGION_WIDTH = 150;
         static final int REGION_HEIGHT = 50;
 
         /*
@@ -321,7 +320,7 @@ public class PowerPlayAuto {
         Point region1_pointB = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH,
                 REGION1_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
-        Point region2_pointA = new Point(
+        /* Point region2_pointA = new Point(
                 REGION2_TOPLEFT_ANCHOR_POINT.x,
                 REGION2_TOPLEFT_ANCHOR_POINT.y);
         Point region2_pointB = new Point(
@@ -337,13 +336,15 @@ public class PowerPlayAuto {
         /*
          * Working variables
          */
-        Mat region1_Cb, region2_Cb, region3_Cb; //TODO: May need to change to Cr instead of Cb to better detect TSE
+        Mat region1_Cb;
+        // Mat region2_Cb, region3_Cb; //TODO: May need to change to Cr instead of Cb to better detect TSE
         Mat YCrCb = new Mat();
         Mat Cb = new Mat();
-        int avg1, avg2, avg3;
+        int avg1;
+        // int avg2, avg3;
 
         // Volatile since accessed by OpMode thread w/o synchronization
-        private volatile TSEPosition position = TSEPosition.LEFT;
+        private volatile TSEPosition position = TSEPosition.RED;
 
         /*
          * This function takes the RGB frame, converts to YCrCb,
@@ -375,8 +376,8 @@ public class PowerPlayAuto {
              * reverse also holds true.
              */
             region1_Cb = Cb.submat(new Rect(region1_pointA, region1_pointB));
-            region2_Cb = Cb.submat(new Rect(region2_pointA, region2_pointB));
-            region3_Cb = Cb.submat(new Rect(region3_pointA, region3_pointB));
+            // region2_Cb = Cb.submat(new Rect(region2_pointA, region2_pointB));
+            // region3_Cb = Cb.submat(new Rect(region3_pointA, region3_pointB));
         }
 
         @Override
@@ -433,8 +434,11 @@ public class PowerPlayAuto {
              * at index 2 here.
              */
             avg1 = (int) Core.mean(region1_Cb).val[0];
-            avg2 = (int) Core.mean(region2_Cb).val[0];
-            avg3 = (int) Core.mean(region3_Cb).val[0];
+            // avg2 = (int) Core.mean(region2_Cb).val[0];
+            // avg3 = (int) Core.mean(region3_Cb).val[0];
+
+            // This is where we need to decide how close to red/green/blue it is.
+
 
             /*
              * Draw a rectangle showing sample region 1 on the screen.
@@ -446,85 +450,6 @@ public class PowerPlayAuto {
                     region1_pointB, // Second point which defines the rectangle
                     BLUE, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
-
-            /*
-             * Draw a rectangle showing sample region 2 on the screen.
-             * Simply a visual aid. Serves no functional purpose.
-             */
-            Imgproc.rectangle(
-                    input, // Buffer to draw on
-                    region2_pointA, // First point which defines the rectangle
-                    region2_pointB, // Second point which defines the rectangle
-                    BLUE, // The color the rectangle is drawn in
-                    2); // Thickness of the rectangle lines
-
-            /*
-             * Draw a rectangle showing sample region 3 on the screen.
-             * Simply a visual aid. Serves no functional purpose.
-             */
-            Imgproc.rectangle(
-                    input, // Buffer to draw on
-                    region3_pointA, // First point which defines the rectangle
-                    region3_pointB, // Second point which defines the rectangle
-                    BLUE, // The color the rectangle is drawn in
-                    2); // Thickness of the rectangle lines
-
-
-            /*
-             * Find the max of the 3 averages
-             */
-            int maxOneTwo = Math.max(avg1, avg2);
-            int max = Math.max(maxOneTwo, avg3);
-
-            /*
-             * Now that we found the max, we actually need to go and
-             * figure out which sample region that value was from
-             */
-            if(max == avg1) // Was it from region 1?
-            {
-                position = TSEPosition.LEFT; // Record our analysis
-
-                /*
-                 * Draw a solid rectangle on top of the chosen region.
-                 * Simply a visual aid. Serves no functional purpose.
-                 */
-                Imgproc.rectangle(
-                        input, // Buffer to draw on
-                        region1_pointA, // First point which defines the rectangle
-                        region1_pointB, // Second point which defines the rectangle
-                        GREEN, // The color the rectangle is drawn in
-                        -1); // Negative thickness means solid fill
-            }
-            else if(max == avg2) // Was it from region 2?
-            {
-                position = TSEPosition.CENTER; // Record our analysis
-
-                /*
-                 * Draw a solid rectangle on top of the chosen region.
-                 * Simply a visual aid. Serves no functional purpose.
-                 */
-                Imgproc.rectangle(
-                        input, // Buffer to draw on
-                        region2_pointA, // First point which defines the rectangle
-                        region2_pointB, // Second point which defines the rectangle
-                        GREEN, // The color the rectangle is drawn in
-                        -1); // Negative thickness means solid fill
-            }
-            else if(max == avg3) // Was it from region 3?
-            {
-                position = TSEPosition.RIGHT; // Record our analysis
-
-                /*
-                 * Draw a solid rectangle on top of the chosen region.
-                 * Simply a visual aid. Serves no functional purpose.
-                 */
-                Imgproc.rectangle(
-                        input, // Buffer to draw on
-                        region3_pointA, // First point which defines the rectangle
-                        region3_pointB, // Second point which defines the rectangle
-                        GREEN, // The color the rectangle is drawn in
-                        -1); // Negative thickness means solid fill
-            }
 
             /*
              * Render the 'input' buffer to the viewport. But note this is not
