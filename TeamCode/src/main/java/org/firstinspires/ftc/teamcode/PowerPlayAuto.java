@@ -340,8 +340,7 @@ public class PowerPlayAuto {
         // Mat region2_Cb, region3_Cb; //TODO: May need to change to Cr instead of Cb to better detect TSE
         Mat YCrCb = new Mat();
         Mat Cb = new Mat();
-        int avg1;
-        // int avg2, avg3;
+        int avg1, avg2, avg3;
 
         // Volatile since accessed by OpMode thread w/o synchronization
         private volatile TSEPosition position = TSEPosition.RED;
@@ -355,6 +354,8 @@ public class PowerPlayAuto {
             Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_RGB2YCrCb);
             Core.extractChannel(YCrCb, Cb, 1); //TODO: Change coi to 1 to change to Cr?
         }
+        // Note on Cb: can tell the difference between black and yellow really well
+        // I don't think we'll be using this
 
         @Override
         public void init(Mat firstFrame)
@@ -368,7 +369,7 @@ public class PowerPlayAuto {
              * buffer would be re-allocated the first time a real frame
              * was crunched)
              */
-            inputToCb(firstFrame);
+             inputToCb(firstFrame);
 
             /*
              * Submats are a persistent reference to a region of the parent
@@ -424,7 +425,7 @@ public class PowerPlayAuto {
             /*
              * Get the Cb channel of the input frame after conversion to YCrCb
              */
-            inputToCb(input);
+            // inputToCb(input);
 
             /*
              * Compute the average pixel value of each submat region. We're
@@ -433,7 +434,10 @@ public class PowerPlayAuto {
              * pixel value of the 3-channel image, and referenced the value
              * at index 2 here.
              */
-            avg1 = (int) Core.mean(region1_Cb).val[0];
+            avg1 = (int) Core.mean(input).val[0];
+
+            // avg2 = (int) Core.mean(region in RGB).val[1]; ?
+            // avg3 = (int) Core.mean(region in RGB).val[2];
             // avg2 = (int) Core.mean(region2_Cb).val[0];
             // avg3 = (int) Core.mean(region3_Cb).val[0];
 
