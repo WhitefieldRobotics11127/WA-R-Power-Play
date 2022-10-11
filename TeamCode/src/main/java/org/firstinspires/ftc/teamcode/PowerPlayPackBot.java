@@ -38,6 +38,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -79,6 +80,7 @@ public class PowerPlayPackBot {
     public RevBlinkinLedDriver blinkin = null;
 
     public DistanceSensor frontDistSensor, leftDistSensor, rightDistSensor;
+    public NormalizedColorSensor colorSensor;
 
     public DigitalChannel led1R;
     public DigitalChannel led1G;
@@ -207,6 +209,7 @@ public class PowerPlayPackBot {
         frontDistSensor = hwMap.get(DistanceSensor.class, "frontDistSensor");
         leftDistSensor = hwMap.get(DistanceSensor.class, "leftDistSensor");
         rightDistSensor = hwMap.get(DistanceSensor.class, "rightDistSensor");
+        colorSensor = hwMap.get(NormalizedColorSensor.class, "colorSensor");
 
 
         led1R = hwMap.get(DigitalChannel.class, "l1r");
