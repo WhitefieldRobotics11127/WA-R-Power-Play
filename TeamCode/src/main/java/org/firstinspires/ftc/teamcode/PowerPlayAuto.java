@@ -159,16 +159,19 @@ public class PowerPlayAuto {
     }
 
     public String scan(){
+        // Scanner scan = new Scanner(System.in);
 
-        float gain = 2;
+        float gain = 5;
         final float[] hsvValues = new float[3];
 
+        // Turns the light on if it's not on already.
         if (myRobot.colorSensor instanceof SwitchableLight) {
             ((SwitchableLight)myRobot.colorSensor).enableLight(true);
         }
 
         myRobot.colorSensor.setGain(gain);
 
+        // Actually gets the colors from the sensor
         NormalizedRGBA colors = myRobot.colorSensor.getNormalizedColors();
 
         Color.colorToHSV(colors.toColor(), hsvValues);
@@ -187,7 +190,21 @@ public class PowerPlayAuto {
     }
 
     public void scanPark(){
+        /* Move forward enough to read the sleeve
+           Scan the sleeve
+           Output data about the sleeve
+           Maybe need to sleep a few milliseconds before and after scan?
+           Move depending on the sleeve
+        */
+        double driveSpeed = 0.4;
+        double rotateSpeed = 0.4;
+        int sleepTime = 300;
 
+        String result = scan();
+
+        if (result.equals("Red")) {
+
+        }
     }
 
     public void parkNoSignal() {
