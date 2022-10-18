@@ -63,9 +63,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 // Ready I think
 public class PowerPlayPackBot {
 
-
-    public WebcamName webcamName = null;
-
     /* Public OpMode members. */
     public DcMotor dcMotor1 = null;
     public DcMotor dcMotor2 = null;
@@ -73,15 +70,10 @@ public class PowerPlayPackBot {
     public DcMotor dcMotor4 = null;
     public DcMotor dcMotor5 = null;
     public DcMotor dcMotor6 = null;
-    public DcMotor dcMotor7 = null;
 
     public VoltageSensor vs;
 
-    public Servo rotisserie = null;
-
-    public CRServo spinnyHorse = null;
-
-    public RevBlinkinLedDriver blinkin = null;
+    // public RevBlinkinLedDriver blinkin = null;
 
     public DistanceSensor frontDistSensor, leftDistSensor, rightDistSensor;
     public NormalizedColorSensor colorSensor;
@@ -160,7 +152,7 @@ public class PowerPlayPackBot {
 
 
 //        RevBlinkinLedDriver.BlinkinPattern pattern;
-        blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
+        // blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
 
         // TODO: Change motors
         // Define and Initialize Motors
@@ -168,9 +160,8 @@ public class PowerPlayPackBot {
         dcMotor2 = hwMap.get(DcMotor.class, "motor_2");
         dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
         dcMotor4 = hwMap.get(DcMotor.class, "motor_4");
-        dcMotor5 = hwMap.get(DcMotor.class, "motor_intake");
-        dcMotor6 = hwMap.get(DcMotor.class, "motor_conveyor");
-        dcMotor7 = hwMap.get(DcMotor.class, "motor_lift");
+        // dcMotor5 = hwMap.get(DcMotor.class, "motor_lift1");
+        // dcMotor6 = hwMap.get(DcMotor.class, "motor_lift2");
 
         // This is what lets us be an omnidirectional bot
         dcMotor1.setDirection(DcMotor.Direction.REVERSE);
@@ -192,7 +183,8 @@ public class PowerPlayPackBot {
         dcMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dcMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dcMotor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcMotor7.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // dcMotor5.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // dcMotor6.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         dcMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         dcMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -200,22 +192,17 @@ public class PowerPlayPackBot {
 
         dcMotor4.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        dcMotor5.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dcMotor6.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dcMotor7.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // dcMotor5.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // dcMotor6.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize installed servos.
-        rotisserie = hwMap.get(Servo.class, "rotisserie");
-        spinnyHorse = hwMap.get(CRServo.class, "spinnyHorse");
+        // rotisserie = hwMap.get(Servo.class, "rotisserie");
 
 
-        blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
-        frontDistSensor = hwMap.get(DistanceSensor.class, "frontDistSensor");
-        leftDistSensor = hwMap.get(DistanceSensor.class, "leftDistSensor");
-        rightDistSensor = hwMap.get(DistanceSensor.class, "rightDistSensor");
+        // blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
         colorSensor = hwMap.get(NormalizedColorSensor.class, "colorSensor");
 
-
+        /*
         led1R = hwMap.get(DigitalChannel.class, "l1r");
         led1G = hwMap.get(DigitalChannel.class, "l1g");
         led2R = hwMap.get(DigitalChannel.class, "l2r");
@@ -224,7 +211,9 @@ public class PowerPlayPackBot {
         led3G = hwMap.get(DigitalChannel.class, "l3g");
         led4R = hwMap.get(DigitalChannel.class, "l4r");
         led4G = hwMap.get(DigitalChannel.class, "l4g");
+        */
 
+        /*
         led1R.setMode(DigitalChannel.Mode.OUTPUT);
         led1G.setMode(DigitalChannel.Mode.OUTPUT);
         led2R.setMode(DigitalChannel.Mode.OUTPUT);
@@ -233,6 +222,7 @@ public class PowerPlayPackBot {
         led3G.setMode(DigitalChannel.Mode.OUTPUT);
         led4R.setMode(DigitalChannel.Mode.OUTPUT);
         led4G.setMode(DigitalChannel.Mode.OUTPUT);
+         */
 
 //        not deleted for demonstrative purposes
 //        intakeServoFL = hwMap.get(CRServo.class, "intakeServoFL");
@@ -259,8 +249,6 @@ public class PowerPlayPackBot {
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES); //may not need this
         gravity = imu.getGravity(); //may not need this
 
-
-        webcamName = hwMap.get(WebcamName.class, "Webcam 1");
     }
 
     public boolean closeTo(double val, double target, double error) {

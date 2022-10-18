@@ -42,7 +42,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  Whitefield Robotics Power Play TeleOp Code
-
  */
 
 @TeleOp(name="PwrPlay_Rover", group="Packbot")
@@ -232,6 +231,8 @@ public class PwrPlay_Rover extends OpMode {
 //        else
 //            robot.dcMotor7.setPower(0.0);
 
+        // Blinkin for later
+        /*
         if (gamepad2.dpad_up)
             robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_RED);
         if (gamepad2.dpad_down)
@@ -240,6 +241,7 @@ public class PwrPlay_Rover extends OpMode {
             robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE);
         if (gamepad2.dpad_right)
             robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
+        */
 
         /** TELEMETRY */
 
@@ -250,8 +252,8 @@ public class PwrPlay_Rover extends OpMode {
 //        currStrafeCt = robot.dcMotor3.getCurrentPosition();
 //        currStrafeCt /= robot.COUNTS_PER_INCH;
 //
-        telemetry.addData("Lift Odometer", robot.dcMotor7.getCurrentPosition());
-        telemetry.addData("Lift Odometer - Vertical Inch", robot.dcMotor7.getCurrentPosition() / FreightFrenzyPackBot.COUNTS_PER_LIFT_INCH * .982);
+        // telemetry.addData("Lift Odometer", robot.dcMotor7.getCurrentPosition());
+        // telemetry.addData("Lift Odometer - Vertical Inch", robot.dcMotor7.getCurrentPosition() / FreightFrenzyPackBot.COUNTS_PER_LIFT_INCH * .982);
 //        telemetry.addData("Straight 2 Odometer", "" + currStraightCt + " " + robot.dcMotor2.getCurrentPosition());
 //        telemetry.addData("Strafe Odometer", "" + currStrafeCt + " " + robot.dcMotor3.getCurrentPosition());
 //

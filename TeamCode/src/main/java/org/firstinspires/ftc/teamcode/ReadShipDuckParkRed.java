@@ -30,11 +30,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
 @Autonomous(name="RED - Read, Ship, Duck, Park Duck", group ="Red")
-//@Disabled
+@Disabled
 public class ReadShipDuckParkRed extends LinearOpMode {
 
 

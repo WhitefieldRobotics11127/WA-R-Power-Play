@@ -120,7 +120,7 @@ public class PowerPlayAuto {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
+        //parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
 
         //  Instantiate the Vuforia engine
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
@@ -186,7 +186,7 @@ public class PowerPlayAuto {
             return "Green";
         }
         else
-            return "Red";
+            return "Green";
     }
 
     public void scanPark(){
@@ -197,13 +197,35 @@ public class PowerPlayAuto {
            Move depending on the sleeve
         */
         double driveSpeed = 0.4;
-        double rotateSpeed = 0.4;
         int sleepTime = 300;
+
+        myRobot.advancedEncoderDrive(myOpMode, 35, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
 
         String result = scan();
 
-        if (result.equals("Red")) {
+        myRobot.advancedEncoderDrive(myOpMode, 35, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
 
+        if (result.equals("Red")) {
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Blue")){
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 48, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Back", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Green")){
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
         }
     }
 
