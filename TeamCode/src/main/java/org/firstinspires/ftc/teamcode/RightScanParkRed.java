@@ -33,9 +33,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name= "Read, Park", group ="Red")
+@Autonomous(name= "RED - Right Read, Ground, Park", group ="Red")
 //@Disabled
-public class ScanParkRed extends LinearOpMode {
+public class RightScanParkRed extends LinearOpMode {
 
     PowerPlayPackBot robot = new PowerPlayPackBot();
 
@@ -57,7 +57,7 @@ public class ScanParkRed extends LinearOpMode {
             telemetry.addData("Starting Method", "");
             telemetry.update();
 
-            autoClass.scanPark();
+            autoClass.scanGroundParkRight();
 
             while (!isStopRequested())
                 sleep(1);

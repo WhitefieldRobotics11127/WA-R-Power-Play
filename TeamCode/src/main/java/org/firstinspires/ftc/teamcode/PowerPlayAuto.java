@@ -158,21 +158,21 @@ public class PowerPlayAuto {
         return myRobot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 
-    public String scan(){
+    public String scan(){ //Needs to be updated for colorSensor2
         // Scanner scan = new Scanner(System.in);
 
         float gain = 5;
         final float[] hsvValues = new float[3];
 
         // Turns the light on if it's not on already.
-        if (myRobot.colorSensor instanceof SwitchableLight) {
-            ((SwitchableLight)myRobot.colorSensor).enableLight(true);
+        if (myRobot.colorSensor1 instanceof SwitchableLight) {
+            ((SwitchableLight)myRobot.colorSensor1).enableLight(true);
         }
 
-        myRobot.colorSensor.setGain(gain);
+        myRobot.colorSensor1.setGain(gain);
 
         // Actually gets the colors from the sensor
-        NormalizedRGBA colors = myRobot.colorSensor.getNormalizedColors();
+        NormalizedRGBA colors = myRobot.colorSensor1.getNormalizedColors();
 
         Color.colorToHSV(colors.toColor(), hsvValues);
 
@@ -189,39 +189,89 @@ public class PowerPlayAuto {
             return "Green";
     }
 
-    public void scanPark(){
+    public void scanGroundParkRight(){
         /* Move forward enough to read the sleeve
            Scan the sleeve
            Output data about the sleeve
+           Drop the cone
            Maybe need to sleep a few milliseconds before and after scan?
            Move depending on the sleeve
         */
         double driveSpeed = 0.4;
         int sleepTime = 300;
 
-        myRobot.advancedEncoderDrive(myOpMode, 35, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 19, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         String result = scan();
 
-        myRobot.advancedEncoderDrive(myOpMode, 35, "Left", driveSpeed);
+        //Drop on ground junction
+        myRobot.advancedEncoderDrive(myOpMode, 3, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
         myOpMode.sleep(sleepTime);
 
         if (result.equals("Red")) {
+            myRobot.advancedEncoderDrive(myOpMode, 6, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Blue")){
+            myRobot.advancedEncoderDrive(myOpMode, 10, "Left", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Green")){
+            myRobot.advancedEncoderDrive(myOpMode, 6, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+    }
+
+    public void scanGroundParkLeft(){
+        /* Move forward enough to read the sleeve
+           Scan the sleeve
+           Output data about the sleeve
+           Drop the cone
+           Maybe need to sleep a few milliseconds before and after scan?
+           Move depending on the sleeve
+        */
+        double driveSpeed = 0.4;
+        int sleepTime = 300;
+
+        myRobot.advancedEncoderDrive(myOpMode, 19, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        String result = scan();
+
+        //Drop on ground junction
+        myRobot.advancedEncoderDrive(myOpMode, 3, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
+        myOpMode.sleep(sleepTime);
+
+        if (result.equals("Red")) {
+            myRobot.advancedEncoderDrive(myOpMode, 6, "Left", driveSpeed);
+            myOpMode.sleep(sleepTime);
             myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
             myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Blue")){
-            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
-            myOpMode.sleep(sleepTime);
-            myRobot.advancedEncoderDrive(myOpMode, 48, "Right", driveSpeed);
-            myOpMode.sleep(sleepTime);
-            myRobot.advancedEncoderDrive(myOpMode, 24, "Back", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 10, "Right", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Green")){
+            myRobot.advancedEncoderDrive(myOpMode, 6, "Left", driveSpeed);
+            myOpMode.sleep(sleepTime);
             myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
             myOpMode.sleep(sleepTime);
             myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);

@@ -76,7 +76,8 @@ public class PowerPlayPackBot {
     // public RevBlinkinLedDriver blinkin = null;
 
     public DistanceSensor frontDistSensor, leftDistSensor, rightDistSensor;
-    public NormalizedColorSensor colorSensor;
+    public NormalizedColorSensor colorSensor1;
+    public NormalizedColorSensor colorSensor2;
 
     public DigitalChannel led1R;
     public DigitalChannel led1G;
@@ -107,7 +108,7 @@ public class PowerPlayPackBot {
 
     //public Servo  = null;
 
-
+    public Servo rotisserie = null;
 
     public BNO055IMU imu;
     Orientation angles; //not sure if we need this
@@ -121,9 +122,8 @@ public class PowerPlayPackBot {
     public static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV) / (WHEEL_DIAMETER_INCHES * 3.1415);
     public static final double     COUNTS_PER_LIFT_INCH         = (537.7) / (1.75 * 3.1415);
 
-    public static final double rotisserieOut = 0.95;
-    public static final double rotisserieMid = 0.5;
-    public static final double rotisserieIn = 0.0;
+    public static final double rotisserieClosed = 1.00;
+    public static final double rotisserieOpen = 0.0;
 
     // Not sure if we need these
 //    public static final double bottomLevelHeight = 50;
@@ -196,11 +196,12 @@ public class PowerPlayPackBot {
         // dcMotor6.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize installed servos.
-        // rotisserie = hwMap.get(Servo.class, "rotisserie");
+        rotisserie = hwMap.get(Servo.class, "rotisserie");
 
 
         // blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
-        colorSensor = hwMap.get(NormalizedColorSensor.class, "colorSensor");
+        colorSensor1 = hwMap.get(NormalizedColorSensor.class, "colorSensor1");
+        colorSensor2 = hwMap.get(NormalizedColorSensor.class, "colorSensor2");
 
         /*
         led1R = hwMap.get(DigitalChannel.class, "l1r");
