@@ -123,7 +123,7 @@ public class PowerPlayPackBot {
     public static final double     COUNTS_PER_LIFT_INCH         = (537.7) / (1.75 * 3.1415);
 
     public static final double rotisserieClosed = 1.00;
-    public static final double rotisserieOpen = 0.0;
+    public static final double rotisserieOpen = 0.5;
 
     // Not sure if we need these
 //    public static final double bottomLevelHeight = 50;

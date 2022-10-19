@@ -35,6 +35,7 @@ import android.graphics.Color;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
@@ -158,7 +159,7 @@ public class PowerPlayAuto {
         return myRobot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 
-    public String scan(){ //Needs to be updated for colorSensor2
+    public String scan(String side){
         // Scanner scan = new Scanner(System.in);
 
         float gain = 5;
@@ -166,7 +167,7 @@ public class PowerPlayAuto {
 
         // Turns the light on if it's not on already.
         if (myRobot.colorSensor1 instanceof SwitchableLight) {
-            ((SwitchableLight)myRobot.colorSensor1).enableLight(true);
+                ((SwitchableLight) myRobot.colorSensor1).enableLight(true);
         }
 
         myRobot.colorSensor1.setGain(gain);
