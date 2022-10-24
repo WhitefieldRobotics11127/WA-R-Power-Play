@@ -69,7 +69,7 @@ public class PowerPlayPackBot {
     public DcMotor dcMotor3 = null;
     public DcMotor dcMotor4 = null;
     public DcMotor dcMotor5 = null;
-    public DcMotor dcMotor6 = null;
+    // public DcMotor dcMotor6 = null;
 
     public VoltageSensor vs;
 
@@ -122,17 +122,19 @@ public class PowerPlayPackBot {
     public static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV) / (WHEEL_DIAMETER_INCHES * 3.1415);
     public static final double     COUNTS_PER_LIFT_INCH         = (537.7) / (1.75 * 3.1415);
 
-    public static final double rotisserieClosed = 1.00;
+    public static final double rotisserieClosed = 0.0;
     public static final double rotisserieOpen = 0.5;
 
-    // Not sure if we need these
-//    public static final double bottomLevelHeight = 50;
-//    public static final double middleLevelHeight = 777; //encoder counts
-//    public static final double topLevelHeight = 1553; //encoder counts
+    //These will change, constants for the junctions.
+    public static final double groundHeight = 25;
+    public static final double lowHeight = 777; //encoder counts
+    public static final double middleHeight = 1553; //encoder counts
+    public static final double topHeight = 1700; //encoder counts
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;
     private ElapsedTime period = new ElapsedTime();
+    int test = 0;
 
 
 
@@ -160,7 +162,7 @@ public class PowerPlayPackBot {
         dcMotor2 = hwMap.get(DcMotor.class, "motor_2");
         dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
         dcMotor4 = hwMap.get(DcMotor.class, "motor_4");
-        // dcMotor5 = hwMap.get(DcMotor.class, "motor_lift1");
+        dcMotor5 = hwMap.get(DcMotor.class, "motor_lift");
         // dcMotor6 = hwMap.get(DcMotor.class, "motor_lift2");
 
         // This is what lets us be an omnidirectional bot

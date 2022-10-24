@@ -159,35 +159,64 @@ public class PowerPlayAuto {
         return myRobot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 
-    public String scan(String side){
+    private String scan(String side){
         // Scanner scan = new Scanner(System.in);
 
         float gain = 5;
         final float[] hsvValues = new float[3];
+        String result = "";
 
-        // Turns the light on if it's not on already.
-        if (myRobot.colorSensor1 instanceof SwitchableLight) {
+        if (side.equals("right")){
+            // Turns the light on if it's not on already.
+            if (myRobot.colorSensor1 instanceof SwitchableLight) {
                 ((SwitchableLight) myRobot.colorSensor1).enableLight(true);
-        }
+            }
 
-        myRobot.colorSensor1.setGain(gain);
+            myRobot.colorSensor1.setGain(gain);
 
-        // Actually gets the colors from the sensor
-        NormalizedRGBA colors = myRobot.colorSensor1.getNormalizedColors();
+            // Actually gets the colors from the sensor
+            NormalizedRGBA colors = myRobot.colorSensor1.getNormalizedColors();
 
-        Color.colorToHSV(colors.toColor(), hsvValues);
+            Color.colorToHSV(colors.toColor(), hsvValues);
 
-        if (colors.red > colors.blue && colors.red > colors.green){
-            return "Red";
+            if (colors.red > colors.blue && colors.red > colors.green){
+                result = "Red";
+            }
+            else if (colors.blue > colors.red && colors.blue > colors.green){
+                result = "Blue";
+            }
+            else if (colors.green > colors.red && colors.green > colors.blue){
+                result = "Green";
+            }
+            else
+                result = "Green";
         }
-        else if (colors.blue > colors.red && colors.blue > colors.green){
-            return "Blue";
+        else if (side.equals("left")){
+            // Turns the light on if it's not on already.
+            if (myRobot.colorSensor2 instanceof SwitchableLight) {
+                ((SwitchableLight) myRobot.colorSensor2).enableLight(true);
+            }
+
+            myRobot.colorSensor2.setGain(gain);
+
+            // Actually gets the colors from the sensor
+            NormalizedRGBA colors = myRobot.colorSensor2.getNormalizedColors();
+
+            Color.colorToHSV(colors.toColor(), hsvValues);
+
+            if (colors.red > colors.blue && colors.red > colors.green){
+                result = "Red";
+            }
+            else if (colors.blue > colors.red && colors.blue > colors.green){
+                result = "Blue";
+            }
+            else if (colors.green > colors.red && colors.green > colors.blue){
+                result = "Green";
+            }
+            else
+                result = "Green";
         }
-        else if (colors.green > colors.red && colors.green > colors.blue){
-            return "Green";
-        }
-        else
-            return "Green";
+        return result;
     }
 
     public void scanGroundParkRight(){
@@ -200,11 +229,12 @@ public class PowerPlayAuto {
         */
         double driveSpeed = 0.4;
         int sleepTime = 300;
+        String side = "right";
 
         myRobot.advancedEncoderDrive(myOpMode, 19, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        String result = scan();
+        String result = scan(side);
 
         //Drop on ground junction
         myRobot.advancedEncoderDrive(myOpMode, 3, "Right", driveSpeed);
@@ -245,11 +275,12 @@ public class PowerPlayAuto {
         */
         double driveSpeed = 0.4;
         int sleepTime = 300;
+        String side = "left";
 
         myRobot.advancedEncoderDrive(myOpMode, 19, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        String result = scan();
+        String result = scan(side);
 
         //Drop on ground junction
         myRobot.advancedEncoderDrive(myOpMode, 3, "Left", driveSpeed);
@@ -280,19 +311,18 @@ public class PowerPlayAuto {
         }
     }
 
+    // Drives left and then forward
     public void parkNoSignal() {
         double driveSpeed = 0.4;
         int sleepTime = 400;
 
-        myRobot.advancedEncoderDrive(myOpMode, 22.5, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
 
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 22.5, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
 
         myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 22.5, "Forward", driveSpeed);
     }
 }
 

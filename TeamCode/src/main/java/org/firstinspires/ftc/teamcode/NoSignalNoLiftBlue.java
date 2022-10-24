@@ -33,10 +33,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name="No Signal No Lift", group ="Blue")
+@Autonomous(name="BLUE - No Signal No Lift", group = "Blue")
 //@Disabled
-public class NoSignalNoLift extends LinearOpMode {
-
+public class NoSignalNoLiftBlue extends LinearOpMode {
 
     PowerPlayPackBot robot = new PowerPlayPackBot();
 

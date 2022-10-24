@@ -152,7 +152,7 @@ public class PwrPlay_Rover extends OpMode {
         if (gamepad1.right_bumper)
             direction = 1;
 
-        if (direction == -1) { // Code for direction indicator lights
+        /* if (direction == -1) { // Code for direction indicator lights
             robot.led1R.setState(false);
             robot.led1G.setState(true);
             robot.led2R.setState(false);
@@ -171,8 +171,19 @@ public class PwrPlay_Rover extends OpMode {
             robot.led4R.setState(false);
             robot.led4G.setState(true);
         }
+        */
 
         /** GAMEPAD 2 */
+
+        robot.dcMotor5.setPower(-gamepad2.left_stick_y);
+
+        if (gamepad2.left_bumper){
+            rotisseriePos = PowerPlayPackBot.rotisserieClosed;
+        }
+        if (gamepad2.right_bumper){
+            rotisseriePos = PowerPlayPackBot.rotisserieOpen;
+        }
+        robot.rotisserie.setPosition(rotisseriePos);
 
 //        if (gamepad2.left_stick_button)
 //            lifty_speed = .3;
