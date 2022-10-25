@@ -126,10 +126,11 @@ public class PowerPlayPackBot {
     public static final double rotisserieOpen = 0.5;
 
     //These will change, constants for the junctions.
-    public static final double groundHeight = 25;
-    public static final double lowHeight = 777; //encoder counts
-    public static final double middleHeight = 1553; //encoder counts
-    public static final double topHeight = 1700; //encoder counts
+    public static final double restHeight = 50;
+    public static final double groundHeight = 100;
+    public static final double lowHeight = 1200; //encoder counts
+    public static final double middleHeight = 2170; //encoder counts
+    public static final double topHeight = 3150; //encoder counts
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;

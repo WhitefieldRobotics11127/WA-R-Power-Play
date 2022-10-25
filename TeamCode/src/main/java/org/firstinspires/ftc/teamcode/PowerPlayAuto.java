@@ -245,6 +245,8 @@ public class PowerPlayAuto {
         myOpMode.sleep(sleepTime);
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
         myOpMode.sleep(sleepTime);
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
 
         if (result.equals("Red")) {
             myRobot.advancedEncoderDrive(myOpMode, 6, "Right", driveSpeed);
@@ -278,6 +280,7 @@ public class PowerPlayAuto {
         */
         double driveSpeed = 0.4;
         int sleepTime = 300;
+        double liftSpeed = 0.3;
         String side = "left";
 
         myRobot.advancedEncoderDrive(myOpMode, 19, "Right", driveSpeed);
@@ -285,11 +288,15 @@ public class PowerPlayAuto {
 
         String result = scan(side);
 
-        //Drop on ground junction - need to finish
         myRobot.advancedEncoderDrive(myOpMode, 3, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
+        //Drop on ground junction - need to finish
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
         if (result.equals("Red")) {
