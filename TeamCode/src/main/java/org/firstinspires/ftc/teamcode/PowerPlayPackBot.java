@@ -277,29 +277,29 @@ public class PowerPlayPackBot {
         return dcMotor7.getCurrentPosition();
     }
     */
-/*
+
     public void moveLiftUp(LinearOpMode opMode, double targetCt, double speed) {
-        int posCurrent = dcMotor7.getCurrentPosition();
+        int posCurrent = dcMotor5.getCurrentPosition();
         // Converts the vertical distance to diagonal distance using trig.
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //Math is incorrect. Counts are easy.
         while (!opMode.isStopRequested() && posCurrent < targetCt) {
-            dcMotor7.setPower(speed);
-            posCurrent = dcMotor7.getCurrentPosition();
+            dcMotor5.setPower(speed);
+            posCurrent = dcMotor5.getCurrentPosition();
         }
-        dcMotor7.setPower(0);
+        dcMotor5.setPower(0);
     }
 
+
     public void moveLiftDown(LinearOpMode opMode, double targetCt, double speed) {
-        int posCurrent = dcMotor7.getCurrentPosition();
+        int posCurrent = dcMotor5.getCurrentPosition();
         // Converts the vertical distance to diagonal distance using trig.
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //see above comment
         while (!opMode.isStopRequested() && posCurrent > targetCt) {
-            dcMotor7.setPower(-speed);
-            posCurrent = dcMotor7.getCurrentPosition();
+            dcMotor5.setPower(-speed);
+            posCurrent = dcMotor5.getCurrentPosition();
         }
-        dcMotor7.setPower(0);
+        dcMotor5.setPower(0);
     }
-    */
     
     public void driveToDist(LinearOpMode opMode, String sensor, double inchDist, double driveSpeed) {
         double targetHeading = getHeading();

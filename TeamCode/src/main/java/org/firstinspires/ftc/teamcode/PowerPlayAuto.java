@@ -228,6 +228,7 @@ public class PowerPlayAuto {
            Move depending on the sleeve
         */
         double driveSpeed = 0.4;
+        double liftSpeed = 0.3;
         int sleepTime = 300;
         String side = "right";
 
@@ -236,10 +237,12 @@ public class PowerPlayAuto {
 
         String result = scan(side);
 
-        //Drop on ground junction
         myRobot.advancedEncoderDrive(myOpMode, 3, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
+        //Drop on ground junction
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
         myOpMode.sleep(sleepTime);
 
@@ -282,7 +285,7 @@ public class PowerPlayAuto {
 
         String result = scan(side);
 
-        //Drop on ground junction
+        //Drop on ground junction - need to finish
         myRobot.advancedEncoderDrive(myOpMode, 3, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
