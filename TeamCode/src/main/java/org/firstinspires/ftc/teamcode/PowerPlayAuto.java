@@ -159,6 +159,23 @@ public class PowerPlayAuto {
         return myRobot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 
+    public void liftTest(){
+        double liftSpeed = .3;
+        int sleepTime = 500;
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.lowHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.topHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+    }
+
     private String scan(String side){
         // Scanner scan = new Scanner(System.in);
 
@@ -232,6 +249,11 @@ public class PowerPlayAuto {
         int sleepTime = 300;
         String side = "right";
 
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
         myRobot.advancedEncoderDrive(myOpMode, 19, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -241,8 +263,6 @@ public class PowerPlayAuto {
         myOpMode.sleep(sleepTime);
 
         //Drop on ground junction
-        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
-        myOpMode.sleep(sleepTime);
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
         myOpMode.sleep(sleepTime);
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
@@ -283,6 +303,11 @@ public class PowerPlayAuto {
         double liftSpeed = 0.3;
         String side = "left";
 
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
         myRobot.advancedEncoderDrive(myOpMode, 19, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -292,8 +317,6 @@ public class PowerPlayAuto {
         myOpMode.sleep(sleepTime);
 
         //Drop on ground junction - need to finish
-        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
-        myOpMode.sleep(sleepTime);
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
         myOpMode.sleep(sleepTime);
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
@@ -325,6 +348,12 @@ public class PowerPlayAuto {
     public void parkNoSignal() {
         double driveSpeed = 0.4;
         int sleepTime = 400;
+        double liftSpeed = 0.3;
+
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
 
         myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
 

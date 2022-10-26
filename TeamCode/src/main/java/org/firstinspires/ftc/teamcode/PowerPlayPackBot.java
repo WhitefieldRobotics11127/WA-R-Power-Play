@@ -122,7 +122,7 @@ public class PowerPlayPackBot {
     public static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV) / (WHEEL_DIAMETER_INCHES * 3.1415);
     public static final double     COUNTS_PER_LIFT_INCH         = (537.7) / (1.75 * 3.1415);
 
-    public static final double rotisserieClosed = 0.0;
+    public static final double rotisserieClosed = 0.1;
     public static final double rotisserieOpen = 0.5;
 
     //These will change, constants for the junctions.
