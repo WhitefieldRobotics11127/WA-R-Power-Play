@@ -50,7 +50,7 @@ public class LeftScanParkBlue extends LinearOpMode {
         telemetry.addData("Ready", "");
         telemetry.update();
 
-//        waitForStart();
+        waitForStart();
 //        autoClass.initTfod();
 
         while (!isStopRequested()) {

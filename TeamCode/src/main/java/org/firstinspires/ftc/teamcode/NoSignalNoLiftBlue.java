@@ -52,7 +52,7 @@ public class NoSignalNoLiftBlue extends LinearOpMode {
         telemetry.addData("Ready", "");
         telemetry.update();
 
-//        waitForStart();
+        waitForStart();
 //        autoClass.initTfod();
         waitForStart();
 

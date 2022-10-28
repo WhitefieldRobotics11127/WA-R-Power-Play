@@ -123,13 +123,13 @@ public class PowerPlayPackBot {
     public static final double     COUNTS_PER_LIFT_INCH         = (537.7) / (1.75 * 3.1415);
 
     public static final double rotisserieClosed = 0.1;
-    public static final double rotisserieOpen = 0.5;
+    public static final double rotisserieOpen = 0.4;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
-    public static final double groundHeight = 100;
-    public static final double lowHeight = 1200; //encoder counts
-    public static final double middleHeight = 2170; //encoder counts
+    public static final double groundHeight = 110;
+    public static final double lowHeight = 1210; //encoder counts
+    public static final double middleHeight = 2270; //encoder counts
     public static final double topHeight = 3150; //encoder counts
 
     /* Local OpMode members. */
@@ -170,6 +170,12 @@ public class PowerPlayPackBot {
         dcMotor1.setDirection(DcMotor.Direction.REVERSE);
         dcMotor3.setDirection(DcMotor.Direction.REVERSE);
 //        dcMotor7.setDirection(DcMotor.Direction.REVERSE);
+
+        // THIS IS CURRENTLY REVERSED CAUSE THERE'S A BUILD PROBLEM, DON'T USE THIS FOR FUTURE YEARS
+        dcMotor4.setDirection(DcMotor.Direction.REVERSE);
+
+        // This might just be for this year.
+        dcMotor5.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
         dcMotor1.setPower(0);

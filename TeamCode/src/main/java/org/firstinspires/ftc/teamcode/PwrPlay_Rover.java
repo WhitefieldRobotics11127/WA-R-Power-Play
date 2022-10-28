@@ -175,7 +175,7 @@ public class PwrPlay_Rover extends OpMode {
 
         /** GAMEPAD 2 */
 
-        robot.dcMotor5.setPower(-gamepad2.left_stick_y);
+        robot.dcMotor5.setPower(gamepad2.right_stick_y);
 
         if (gamepad2.left_bumper){
             rotisseriePos = PowerPlayPackBot.rotisserieClosed;
