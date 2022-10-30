@@ -245,7 +245,7 @@ public class PowerPlayAuto {
         */
         double driveSpeed = 0.4;
         double liftSpeed = 0.3;
-        int sleepTime = 400;
+        int sleepTime = 500;
         String side = "right";
 
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
@@ -278,11 +278,11 @@ public class PowerPlayAuto {
             myOpMode.sleep(sleepTime);
             myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
             myOpMode.sleep(sleepTime);
-            myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 25, "Left", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Blue")){
-            myRobot.advancedEncoderDrive(myOpMode, 11, "Left", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 12, "Left", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Green")){
@@ -290,7 +290,7 @@ public class PowerPlayAuto {
             myOpMode.sleep(sleepTime);
             myRobot.advancedEncoderDrive(myOpMode, 23, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
-            myRobot.advancedEncoderDrive(myOpMode, 25, "Left", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 26, "Left", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
     }
@@ -304,7 +304,7 @@ public class PowerPlayAuto {
            Move depending on the sleeve
         */
         double driveSpeed = 0.4;
-        int sleepTime = 300;
+        int sleepTime = 500;
         double liftSpeed = 0.3;
         String side = "left";
 
@@ -313,15 +313,16 @@ public class PowerPlayAuto {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 19, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 18.5, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
+
 
         String result = scan(side);
 
-        myRobot.advancedEncoderDrive(myOpMode, 3.1, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 3, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 1, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 1.5, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         //Drop on ground junction - need to finish
@@ -330,7 +331,7 @@ public class PowerPlayAuto {
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 1, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 1.5, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         if (result.equals("Red")) {
@@ -358,7 +359,7 @@ public class PowerPlayAuto {
     // Drives left and then forward
     public void parkNoSignal() {
         double driveSpeed = 0.4;
-        int sleepTime = 400;
+        int sleepTime = 500;
         double liftSpeed = 0.3;
 
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);

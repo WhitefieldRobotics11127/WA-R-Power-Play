@@ -171,9 +171,6 @@ public class PowerPlayPackBot {
         dcMotor3.setDirection(DcMotor.Direction.REVERSE);
 //        dcMotor7.setDirection(DcMotor.Direction.REVERSE);
 
-        // THIS IS CURRENTLY REVERSED CAUSE THERE'S A BUILD PROBLEM, DON'T USE THIS FOR FUTURE YEARS
-        dcMotor4.setDirection(DcMotor.Direction.REVERSE);
-
         // This might just be for this year.
         dcMotor5.setDirection(DcMotor.Direction.REVERSE);
 
