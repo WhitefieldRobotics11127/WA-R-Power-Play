@@ -69,6 +69,7 @@ public class PwrPlay_Rover extends OpMode {
     boolean sprinting = false;
 
     double rotisseriePos = 0.0;
+    double chickenPos = 0.0;
 
     double defLiftPwr = 0;
     double liftHoldPower = .15;
@@ -175,15 +176,19 @@ public class PwrPlay_Rover extends OpMode {
 
         /** GAMEPAD 2 */
 
-        robot.dcMotor5.setPower(gamepad2.right_stick_y);
+        robot.dcMotor5.setPower(-gamepad2.right_stick_y);
+        robot.dcMotor6.setPower(-gamepad2.right_stick_y);
 
         if (gamepad2.left_bumper){
             rotisseriePos = PowerPlayPackBot.rotisserieClosed;
+            chickenPos = PowerPlayPackBot.chickenClosed;
         }
         if (gamepad2.right_bumper){
             rotisseriePos = PowerPlayPackBot.rotisserieOpen;
+            chickenPos = PowerPlayPackBot.chickenOpen;
         }
         robot.rotisserie.setPosition(rotisseriePos);
+        robot.chicken.setPosition(chickenPos);
 
 //        if (gamepad2.left_stick_button)
 //            lifty_speed = .3;

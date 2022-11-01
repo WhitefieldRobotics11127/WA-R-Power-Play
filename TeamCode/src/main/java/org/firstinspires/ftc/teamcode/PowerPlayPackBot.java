@@ -69,7 +69,7 @@ public class PowerPlayPackBot {
     public DcMotor dcMotor3 = null;
     public DcMotor dcMotor4 = null;
     public DcMotor dcMotor5 = null;
-    // public DcMotor dcMotor6 = null;
+    public DcMotor dcMotor6 = null;
 
     public VoltageSensor vs;
 
@@ -109,6 +109,7 @@ public class PowerPlayPackBot {
     //public Servo  = null;
 
     public Servo rotisserie = null;
+    public Servo chicken = null;
 
     public BNO055IMU imu;
     Orientation angles; //not sure if we need this
@@ -122,8 +123,14 @@ public class PowerPlayPackBot {
     public static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV) / (WHEEL_DIAMETER_INCHES * 3.1415);
     public static final double     COUNTS_PER_LIFT_INCH         = (537.7) / (1.75 * 3.1415);
 
+    //public static final double rotisserieClosed = 0.1;
+    //public static final double rotisserieOpen = 0.4;
+
+    //Need to be tested/programmed onto the servos
+    public static final double rotisserieOpen = 0.5;
     public static final double rotisserieClosed = 0.1;
-    public static final double rotisserieOpen = 0.4;
+    public static final double chickenOpen = 0.9;
+    public static final double chickenClosed = 0.5;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
@@ -164,7 +171,7 @@ public class PowerPlayPackBot {
         dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
         dcMotor4 = hwMap.get(DcMotor.class, "motor_4");
         dcMotor5 = hwMap.get(DcMotor.class, "motor_lift");
-        // dcMotor6 = hwMap.get(DcMotor.class, "motor_lift2");
+        dcMotor6 = hwMap.get(DcMotor.class, "motor_lift1");
 
         // This is what lets us be an omnidirectional bot
         dcMotor1.setDirection(DcMotor.Direction.REVERSE);
@@ -173,6 +180,7 @@ public class PowerPlayPackBot {
 
         // This might just be for this year.
         dcMotor5.setDirection(DcMotor.Direction.REVERSE);
+        dcMotor6.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
         dcMotor1.setPower(0);
@@ -203,6 +211,7 @@ public class PowerPlayPackBot {
 
         // Define and initialize installed servos.
         rotisserie = hwMap.get(Servo.class, "rotisserie");
+        chicken = hwMap.get(Servo.class, "chicken");
 
 
         // blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
@@ -288,9 +297,11 @@ public class PowerPlayPackBot {
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //Math is incorrect. Counts are easy.
         while (!opMode.isStopRequested() && posCurrent < targetCt) {
             dcMotor5.setPower(speed);
+            dcMotor6.setPower(speed);
             posCurrent = dcMotor5.getCurrentPosition();
         }
         dcMotor5.setPower(0);
+        dcMotor6.setPower(0);
     }
 
 
@@ -300,9 +311,11 @@ public class PowerPlayPackBot {
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //see above comment
         while (!opMode.isStopRequested() && posCurrent > targetCt) {
             dcMotor5.setPower(-speed);
+            dcMotor6.setPower(-speed);
             posCurrent = dcMotor5.getCurrentPosition();
         }
         dcMotor5.setPower(0);
+        dcMotor6.setPower(0);
     }
     
     public void driveToDist(LinearOpMode opMode, String sensor, double inchDist, double driveSpeed) {

@@ -162,7 +162,6 @@ public class PowerPlayAuto {
     public void liftTest(){
         double liftSpeed = .3;
         int sleepTime = 5000;
-        int test = 0;
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
@@ -174,6 +173,16 @@ public class PowerPlayAuto {
         myOpMode.sleep(sleepTime);
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
+    }
+
+    public void openGrabber(){
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
+        myRobot.chicken.setPosition(PowerPlayPackBot.chickenOpen);
+    }
+
+    public void closeGrabber(){
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+        myRobot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
     }
 
     private String scan(String side){
@@ -234,6 +243,117 @@ public class PowerPlayAuto {
                 result = "Green";
         }
         return result;
+    }
+
+    public void scanMedParkLeft(){
+        double driveSpeed = 0.4;
+        double liftSpeed = 0.3;
+        int sleepTime = 500;
+        String side = "left";
+
+        closeGrabber();
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 18.5, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        String result = scan(side);
+
+        myRobot.advancedEncoderDrive(myOpMode, 17.5, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        //Distances need to change from this point forward
+        myRobot.advancedEncoderDrive(myOpMode, 27, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        //Move forward a little to reach the junction - add later
+
+        openGrabber();
+        myOpMode.sleep(sleepTime);
+
+        //Move backward a little to clear the junction - add later
+
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 7, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        if (result.equals("Red")) {
+            myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Blue")){
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Green")){
+            myOpMode.sleep(sleepTime);
+        }
+    }
+
+    public void scanMedParkLRight(){
+        double driveSpeed = 0.4;
+        double liftSpeed = 0.3;
+        int sleepTime = 500;
+        String side = "right";
+
+        closeGrabber();
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 19, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        String result = scan(side);
+
+        myRobot.advancedEncoderDrive(myOpMode, 18, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        //Distances need to change from this point forward
+        myRobot.advancedEncoderDrive(myOpMode, 27, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        //Move forward a little to reach the junction - add later
+
+        openGrabber();
+        myOpMode.sleep(sleepTime);
+
+        //Move backward a little to clear the junction - add later
+
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 7, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        if (result.equals("Red")) {
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Blue")){
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Green")){
+            myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
     }
 
     public void scanGroundParkRight(){
