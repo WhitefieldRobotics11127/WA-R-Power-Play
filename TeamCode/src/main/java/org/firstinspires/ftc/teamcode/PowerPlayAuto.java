@@ -162,6 +162,7 @@ public class PowerPlayAuto {
     public void liftTest(){
         double liftSpeed = .3;
         int sleepTime = 5000;
+        int test = 0;
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
