@@ -164,14 +164,15 @@ public class PowerPlayPackBot {
 //        RevBlinkinLedDriver.BlinkinPattern pattern;
         // blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
 
-        // TODO: Change motors
+        //
         // Define and Initialize Motors
-        dcMotor1 = hwMap.get(DcMotor.class, "motor_1");
-        dcMotor2 = hwMap.get(DcMotor.class, "motor_2");
-        dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
+        // dcMotor1 = hwMap.get(DcMotor.class, "motor_1");
+        // dcMotor2 = hwMap.get(DcMotor.class, "motor_2");
+        /* dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
         dcMotor4 = hwMap.get(DcMotor.class, "motor_4");
         dcMotor5 = hwMap.get(DcMotor.class, "motor_lift");
         dcMotor6 = hwMap.get(DcMotor.class, "motor_lift1");
+*/
 
         // This is what lets us be an omnidirectional bot
         dcMotor1.setDirection(DcMotor.Direction.REVERSE);
@@ -215,8 +216,8 @@ public class PowerPlayPackBot {
 
 
         // blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
-        colorSensor1 = hwMap.get(NormalizedColorSensor.class, "colorSensor1");
-        colorSensor2 = hwMap.get(NormalizedColorSensor.class, "colorSensor2");
+        // colorSensor1 = hwMap.get(NormalizedColorSensor.class, "colorSensor1");
+        // colorSensor2 = hwMap.get(NormalizedColorSensor.class, "colorSensor2");
 
         /*
         led1R = hwMap.get(DigitalChannel.class, "l1r");
