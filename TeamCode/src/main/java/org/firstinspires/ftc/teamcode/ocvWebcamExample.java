@@ -48,7 +48,7 @@ public class ocvWebcamExample extends LinearOpMode
          * In this sample, we're using a webcam. Note that you will need to
          * make sure you have added the webcam to your configuration file and
          * adjusted the name here to match what you named it in said config file.
-         *
+         *+
          * We pass it the view that we wish to use for camera monitor (on
          * the RC phone). If no camera monitor is desired, use the alternate
          * single-parameter constructor instead (commented out below)

@@ -69,7 +69,7 @@ import java.util.List;
  */
 
 
-public class PowerPlayAuto {
+public class    PowerPlayAuto {
 
     private LinearOpMode myOpMode;       // Access to the OpMode object
     private PowerPlayPackBot myRobot;        // Access to the Robot hardware
@@ -109,7 +109,6 @@ public class PowerPlayAuto {
         myRobot = theRobot;
         myHardwareMap = theHwMap;
     }
-
     /**
      * Initialize the Vuforia localization engine. Must be done to init TFOD.
      */
