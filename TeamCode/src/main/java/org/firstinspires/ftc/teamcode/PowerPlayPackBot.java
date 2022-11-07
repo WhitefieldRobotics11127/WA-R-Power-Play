@@ -60,7 +60,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
  * Whitefield Robotics - FTC 2022-23 Power Play
  * This code defines the hardware on our robot.
  */
-// Ready I think
+
 public class PowerPlayPackBot {
 
     /* Public OpMode members. */
@@ -437,6 +437,13 @@ public class PowerPlayPackBot {
      */
     public void advancedEncoderDrive(LinearOpMode opMode, double distance, String direction, double speed) {
         double targetCt = distance * COUNTS_PER_INCH * (-.647 * speed + 1.048);
+        /*
+            y = mx + b where m = -.647 and b = 1.048
+            Run the bot at 30% speed (x = 0.3) to a certain distance and record the drift (in inches),
+            then run the bot at 70% speed (x = 0.7) to the same distance and record the drift (in
+            inches). Your y value for each will be the target distance divided by the actual distance
+            it went.
+        */
 
         double targetHeading = getHeading();
         double currentHeading = getHeading();

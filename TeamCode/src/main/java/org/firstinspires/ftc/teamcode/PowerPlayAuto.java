@@ -260,7 +260,7 @@ public class    PowerPlayAuto {
 
         String result = scan(side);
 
-        myRobot.advancedEncoderDrive(myOpMode, 17.5, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 17.5, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
@@ -273,12 +273,16 @@ public class    PowerPlayAuto {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        //Move forward a little to reach the junction - add later
+        //Move forward a little to reach the junction
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
 
         openGrabber();
         myOpMode.sleep(sleepTime);
 
-        //Move backward a little to clear the junction - add later
+        //Move backward a little to clear the junction
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
@@ -299,7 +303,7 @@ public class    PowerPlayAuto {
         }
     }
 
-    public void scanMedParkLRight(){
+    public void scanMedParkRight(){
         double driveSpeed = 0.4;
         double liftSpeed = 0.3;
         int sleepTime = 500;
@@ -329,12 +333,16 @@ public class    PowerPlayAuto {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        //Move forward a little to reach the junction - add later
+        //Move forward a little to reach the junction
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
 
         openGrabber();
         myOpMode.sleep(sleepTime);
 
-        //Move backward a little to clear the junction - add later
+        //Move backward a little to clear the junction
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
