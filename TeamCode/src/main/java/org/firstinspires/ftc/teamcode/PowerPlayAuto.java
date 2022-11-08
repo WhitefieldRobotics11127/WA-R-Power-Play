@@ -164,6 +164,8 @@ public class    PowerPlayAuto {
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
+        myOpMode.sleep(sleepTime);
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.lowHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -247,7 +249,7 @@ public class    PowerPlayAuto {
     public void scanMedParkLeft(){
         double driveSpeed = 0.4;
         double liftSpeed = 0.3;
-        int sleepTime = 500;
+        int sleepTime = 450;
         String side = "left";
 
         closeGrabber();
@@ -292,6 +294,54 @@ public class    PowerPlayAuto {
 
         // Pick up another cone and place it on the high
 
+        myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        closeGrabber();
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.lowHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 2, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 46, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        while (getHeading() < 180) {
+            myRobot.rotateCCW(.4);
+        }
+
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.topHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        openGrabber();
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+
+        // Park - will change if we add the high junction
 
         if (result.equals("Red")) {
             myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
@@ -309,7 +359,7 @@ public class    PowerPlayAuto {
     public void scanMedParkRight(){
         double driveSpeed = 0.4;
         double liftSpeed = 0.3;
-        int sleepTime = 500;
+        int sleepTime = 450;
         String side = "right";
 
         closeGrabber();
@@ -350,8 +400,60 @@ public class    PowerPlayAuto {
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 7, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
+
+        // Pick up another cone and place it on the high
+        // This might end up being in a loop
+        /*
+        myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        closeGrabber();
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.lowHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 2, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 46, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        while (getHeading() < 180) {
+            myRobot.rotateCW(.4);
+        }
+
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.topHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        openGrabber();
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+        */
+
+        // Park - will change if we add placing on the high junction
 
         if (result.equals("Red")) {
             myOpMode.sleep(sleepTime);

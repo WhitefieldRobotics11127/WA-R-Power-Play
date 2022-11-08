@@ -135,6 +135,7 @@ public class PowerPlayPackBot {
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
     public static final double groundHeight = 110;
+    public static final double coneStack = 1000;
     public static final double lowHeight = 1210; //encoder counts
     public static final double middleHeight = 2270; //encoder counts
     public static final double topHeight = 3150; //encoder counts
