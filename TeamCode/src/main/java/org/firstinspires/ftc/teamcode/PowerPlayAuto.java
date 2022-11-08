@@ -451,6 +451,19 @@ public class    PowerPlayAuto {
 
         myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
+
+        -below added for loop-
+
+        while (getHeading() > 0) {
+            myRobot.rotateCW(-.4);
+        }
+
+        myRobot.advancedEncoderDrive(myOpMode, 46, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
         */
 
         // Park - will change if we add placing on the high junction

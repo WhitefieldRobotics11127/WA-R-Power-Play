@@ -136,6 +136,7 @@ public class PowerPlayPackBot {
     public static final double restHeight = 50;
     public static final double groundHeight = 110;
     public static final double coneStack = 1000;
+    // public static final double updatedConeStack = coneStack;
     public static final double lowHeight = 1210; //encoder counts
     public static final double middleHeight = 2270; //encoder counts
     public static final double topHeight = 3150; //encoder counts
