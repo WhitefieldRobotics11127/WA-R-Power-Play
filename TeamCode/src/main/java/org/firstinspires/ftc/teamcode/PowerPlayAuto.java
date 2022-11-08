@@ -287,8 +287,11 @@ public class    PowerPlayAuto {
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 7, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 6, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
+
+        // Pick up another cone and place it on the high
+
 
         if (result.equals("Red")) {
             myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
