@@ -135,7 +135,8 @@ public class PowerPlayPackBot {
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
     public static final double groundHeight = 110;
-    public static final double coneStack = 1000; // for the five cones at the beginning
+    public static final double coneStack = 1000;
+    // public static final double updatedConeStack = coneStack;
     public static final double lowHeight = 1210; //encoder counts
     public static final double middleHeight = 2270; //encoder counts
     public static final double topHeight = 3150; //encoder counts
@@ -167,13 +168,13 @@ public class PowerPlayPackBot {
 
         //
         // Define and Initialize Motors
-        dcMotor1 = hwMap.get(DcMotor.class, "motor_1");
-        dcMotor2 = hwMap.get(DcMotor.class, "motor_2");
-        dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
+        // dcMotor1 = hwMap.get(DcMotor.class, "motor_1");
+        // dcMotor2 = hwMap.get(DcMotor.class, "motor_2");
+        /* dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
         dcMotor4 = hwMap.get(DcMotor.class, "motor_4");
         dcMotor5 = hwMap.get(DcMotor.class, "motor_lift");
         dcMotor6 = hwMap.get(DcMotor.class, "motor_lift1");
-
+*/
 
         // This is what lets us be an omnidirectional bot
         dcMotor1.setDirection(DcMotor.Direction.REVERSE);
@@ -199,8 +200,8 @@ public class PowerPlayPackBot {
         dcMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dcMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dcMotor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcMotor5.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcMotor6.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // dcMotor5.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // dcMotor6.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         dcMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         dcMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -208,8 +209,8 @@ public class PowerPlayPackBot {
 
         dcMotor4.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        dcMotor5.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dcMotor6.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // dcMotor5.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // dcMotor6.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize installed servos.
         rotisserie = hwMap.get(Servo.class, "rotisserie");
@@ -217,8 +218,8 @@ public class PowerPlayPackBot {
 
 
         // blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
-        colorSensor1 = hwMap.get(NormalizedColorSensor.class, "colorSensor1");
-        colorSensor2 = hwMap.get(NormalizedColorSensor.class, "colorSensor2");
+        // colorSensor1 = hwMap.get(NormalizedColorSensor.class, "colorSensor1");
+        // colorSensor2 = hwMap.get(NormalizedColorSensor.class, "colorSensor2");
 
         /*
         led1R = hwMap.get(DigitalChannel.class, "l1r");
