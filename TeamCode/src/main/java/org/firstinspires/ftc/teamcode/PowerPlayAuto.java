@@ -409,6 +409,9 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
+        *loop header
+        while (updatedConeStack > 0)
+
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -461,9 +464,13 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 46, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
+        updatedCoinStack -= 200;
+
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
 
+        myRobot.advancedEncoderDrive(myOpMode, 2, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
         */
 
         // Park - will change if we add placing on the high junction
