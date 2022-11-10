@@ -411,7 +411,7 @@ public class    PowerPlayAuto {
 
         *loop header
         while (updatedConeStack > 0)
-
+        {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -471,6 +471,7 @@ public class    PowerPlayAuto {
 
         myRobot.advancedEncoderDrive(myOpMode, 2, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
+        }
         */
 
         // Park - will change if we add placing on the high junction
