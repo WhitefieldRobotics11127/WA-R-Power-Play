@@ -379,7 +379,7 @@ public class    PowerPlayAuto {
         myOpMode.sleep(sleepTime);
 
         //Distances need to change from this point forward
-        myRobot.advancedEncoderDrive(myOpMode, 27, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 37, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
 
@@ -387,30 +387,31 @@ public class    PowerPlayAuto {
         myOpMode.sleep(sleepTime);
 
         //Move forward a little to reach the junction
-        myRobot.advancedEncoderDrive(myOpMode, 6, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 4, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         openGrabber();
         myOpMode.sleep(sleepTime);
 
         //Move backward a little to clear the junction
-        myRobot.advancedEncoderDrive(myOpMode, 6, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 4, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 6, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 10, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         // Pick up another cone and place it on the high
         // This might end up being in a loop
         /*
-        myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 44, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         *loop header
-        while (updatedConeStack > 0)
+        while (updatedConeStack
+         > 0)
         {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
@@ -421,38 +422,38 @@ public class    PowerPlayAuto {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.lowHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 2, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 7, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 46, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 43, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         while (getHeading() < 180) {
             myRobot.rotateCW(.4);
         }
 
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 11.5, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.topHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 6, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 3, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         openGrabber();
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 6, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 3, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 11.5, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         -below added for loop-
