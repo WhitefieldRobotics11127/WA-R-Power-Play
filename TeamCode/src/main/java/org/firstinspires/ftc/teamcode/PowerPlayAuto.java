@@ -300,11 +300,11 @@ public class    PowerPlayAuto {
 
         myRobot.advancedEncoderDrive(myOpMode, 12.5, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
-        //Left off here
 
         // Pick up another cone and place it on the high
+        /*
 
-        myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 44, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
@@ -316,20 +316,20 @@ public class    PowerPlayAuto {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.lowHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 2, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 4, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 46, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 40, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         while (getHeading() < 180) {
             myRobot.rotateCCW(.4);
         }
 
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 11.5, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.topHeight, liftSpeed);
@@ -347,18 +347,18 @@ public class    PowerPlayAuto {
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.restHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 11.5, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
+        */
 
-
-        // Park - will change if we add the high junction
+        // Park - will change direction if we add the high junction
 
         if (result.equals("Red")) {
-            myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 45, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Blue")){
-            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 22, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Green")){
@@ -484,17 +484,17 @@ public class    PowerPlayAuto {
         }
         */
 
-        // Park - will change if we add placing on the high junction
+        // Park - will change direction if we add placing on the high junction
 
         if (result.equals("Red")) {
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Blue")){
-            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 22, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Green")){
-            myRobot.advancedEncoderDrive(myOpMode, 48, "Forward", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 45, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
     }
