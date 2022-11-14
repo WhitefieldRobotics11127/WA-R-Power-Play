@@ -420,8 +420,7 @@ public class    PowerPlayAuto {
         myOpMode.sleep(sleepTime);
 
         *loop header
-        while (updatedConeStack
-         > 0)
+        while (updatedConeStack > 0)
         {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
@@ -472,7 +471,7 @@ public class    PowerPlayAuto {
             myRobot.rotateCW(-.4);
         }
 
-        myRobot.advancedEncoderDrive(myOpMode, 46, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 43, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         updatedCoinStack -= 200;
@@ -480,7 +479,7 @@ public class    PowerPlayAuto {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 2, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 7, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
         }
         */
