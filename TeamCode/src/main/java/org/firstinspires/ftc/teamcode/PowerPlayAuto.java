@@ -277,7 +277,6 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 21, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        //Distances need to change from this point forward
         myRobot.advancedEncoderDrive(myOpMode, 36.5, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -388,10 +387,8 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        //Distances need to change from this point forward
         myRobot.advancedEncoderDrive(myOpMode, 37, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
-
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
@@ -509,7 +506,7 @@ public class    PowerPlayAuto {
         */
         double driveSpeed = 0.4;
         double liftSpeed = 0.3;
-        int sleepTime = 500;
+        int sleepTime = 450;
         String side = "right";
 
         myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);

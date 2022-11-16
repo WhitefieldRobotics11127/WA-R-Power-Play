@@ -123,14 +123,15 @@ public class PowerPlayPackBot {
     public static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV) / (WHEEL_DIAMETER_INCHES * 3.1415);
     public static final double     COUNTS_PER_LIFT_INCH         = (537.7) / (1.75 * 3.1415);
 
+    // Original values
     //public static final double rotisserieClosed = 0.1;
     //public static final double rotisserieOpen = 0.4;
 
     //Need to be tested/programmed onto the servos
-    public static final double rotisserieOpen = 0.5;
+    public static final double rotisserieOpen = 0.4;
     public static final double rotisserieClosed = 0.1;
     public static final double chickenOpen = 0.9;
-    public static final double chickenClosed = 0.5;
+    public static final double chickenClosed = 0.6;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
