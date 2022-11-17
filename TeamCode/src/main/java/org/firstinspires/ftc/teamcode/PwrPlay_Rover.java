@@ -135,8 +135,8 @@ public class PwrPlay_Rover extends OpMode {
 
         forward = gear * gamepad1.left_stick_y;
         strafe = gear * -gamepad1.left_stick_x;
-        rotate = -gear * gamepad1.right_stick_x;
-
+        //rotate = -gear * gamepad1.right_stick_x;
+        rotate = -gear * -gamepad1.right_stick_x;
 
         front_left = direction * forward + rotate + (direction * strafe);
         front_right = direction * forward - rotate - (direction * strafe);
@@ -176,8 +176,8 @@ public class PwrPlay_Rover extends OpMode {
 
         /** GAMEPAD 2 */
 
-        robot.dcMotor5.setPower(-gamepad2.right_stick_y);
-        robot.dcMotor6.setPower(-gamepad2.right_stick_y);
+        robot.dcMotor5.setPower(gamepad2.right_stick_y);
+        robot.dcMotor6.setPower(gamepad2.right_stick_y);
 
         if (gamepad2.left_bumper){
             rotisseriePos = PowerPlayPackBot.rotisserieClosed;
