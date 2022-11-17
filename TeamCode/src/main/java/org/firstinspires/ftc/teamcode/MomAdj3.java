@@ -30,13 +30,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name="RED - No Signal No Lift", group = "Red")
-@Disabled
-public class NoSignalNoLiftRed extends LinearOpMode {
+@Autonomous(name= "Momentum Adjustor 3", group ="Test")
+//@Disabled
+public class MomAdj3 extends LinearOpMode {
 
     PowerPlayPackBot robot = new PowerPlayPackBot();
 
@@ -45,8 +44,6 @@ public class NoSignalNoLiftRed extends LinearOpMode {
         robot.init(hardwareMap);
 
         PowerPlayAuto autoClass = new PowerPlayAuto(this, robot, hardwareMap);
-
-
 //        autoClass.initVuforia();
 //        autoClass.initTfod();
 
@@ -55,19 +52,20 @@ public class NoSignalNoLiftRed extends LinearOpMode {
 
         waitForStart();
 //        autoClass.initTfod();
-        waitForStart();
 
         while (!isStopRequested()) {
             telemetry.addData("Starting Method", "");
             telemetry.update();
 
-            autoClass.parkNoSignal();
-
+            robot.advancedEncoderDrive(this, 36, "Forward", .3);
 
             while (!isStopRequested())
                 sleep(1);
         }
 
     }
+
+
+
 
 }
