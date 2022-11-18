@@ -183,7 +183,7 @@ public class PwrPlay_Rover extends OpMode {
             rotisseriePos = PowerPlayPackBot.rotisserieClosed;
             chickenPos = PowerPlayPackBot.chickenClosed;
         }
-        if (gamepad2.right_bumper){
+        else if (gamepad2.right_bumper){
             rotisseriePos = PowerPlayPackBot.rotisserieOpen;
             chickenPos = PowerPlayPackBot.chickenOpen;
         }
