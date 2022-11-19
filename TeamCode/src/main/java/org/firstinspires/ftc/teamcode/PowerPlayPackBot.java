@@ -128,10 +128,10 @@ public class PowerPlayPackBot {
     //public static final double rotisserieOpen = 0.4;
 
     //Need to be tested/programmed onto the servos
-    public static final double rotisserieOpen = 0.4;
-    public static final double rotisserieClosed = 0.1;
+    public static final double rotisserieOpen = 0.9;
+    public static final double rotisserieClosed = 0.6;
     public static final double chickenOpen = 0.9;
-    public static final double chickenClosed = 0.6;
+    public static final double chickenClosed = 0.5;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
