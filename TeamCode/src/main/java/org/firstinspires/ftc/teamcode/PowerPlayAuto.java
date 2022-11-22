@@ -623,7 +623,6 @@ public class    PowerPlayAuto {
         int sleepTime = 500;
         double liftSpeed = 0.3;
 
-        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
         myOpMode.sleep(sleepTime);
         // myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         // myOpMode.sleep(sleepTime);
@@ -638,6 +637,48 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
 
         myOpMode.sleep(sleepTime);
+    }
+
+    public void scanPark(){
+        // All of these directions are flipped
+        double driveSpeed = 0.4;
+        int sleepTime = 500;
+        String side = "right";
+
+        myRobot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+        myRobot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
+
+        myRobot.advancedEncoderDrive(myOpMode, 19, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 1, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        String result = scan(side);
+
+        myRobot.advancedEncoderDrive(myOpMode, 1, "Bac4 kward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        if (result.equals("Red")) {
+            myRobot.advancedEncoderDrive(myOpMode, 18, "Left", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 24, "Forward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 25, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Blue")){
+            myRobot.advancedEncoderDrive(myOpMode, 12, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
+        if (result.equals("Green")){
+            myRobot.advancedEncoderDrive(myOpMode, 18, "Left", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 23, "Backward", driveSpeed);
+            myOpMode.sleep(sleepTime);
+            myRobot.advancedEncoderDrive(myOpMode, 26, "Right", driveSpeed);
+            myOpMode.sleep(sleepTime);
+        }
     }
 }
 
