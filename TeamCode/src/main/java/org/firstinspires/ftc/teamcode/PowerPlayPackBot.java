@@ -69,7 +69,7 @@ public class PowerPlayPackBot {
     public DcMotor dcMotor3 = null;
     public DcMotor dcMotor4 = null;
     public DcMotor dcMotor5 = null;
-    public DcMotor dcMotor6 = null;
+    //public DcMotor dcMotor6 = null;
 
     public VoltageSensor vs;
 
@@ -174,7 +174,7 @@ public class PowerPlayPackBot {
         dcMotor3 = hwMap.get(DcMotor.class, "motor_3");
         dcMotor4 = hwMap.get(DcMotor.class, "motor_4");
         dcMotor5 = hwMap.get(DcMotor.class, "motor_lift");
-        dcMotor6 = hwMap.get(DcMotor.class, "motor_lift1");
+        //dcMotor6 = hwMap.get(DcMotor.class, "motor_lift1");
 
         // This is what lets us be an omnidirectional bot
         dcMotor1.setDirection(DcMotor.Direction.REVERSE);
@@ -183,7 +183,13 @@ public class PowerPlayPackBot {
 
         // This might just be for this year.
         dcMotor5.setDirection(DcMotor.Direction.REVERSE);
-        dcMotor6.setDirection(DcMotor.Direction.REVERSE);
+        //dcMotor6.setDirection(DcMotor.Direction.REVERSE);
+
+        //Setting the motors upright may have changed the way the wheels rotate
+        dcMotor1.setDirection(DcMotor.Direction.REVERSE);
+        dcMotor2.setDirection(DcMotor.Direction.REVERSE);
+        dcMotor3.setDirection(DcMotor.Direction.REVERSE);
+        dcMotor4.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
         dcMotor1.setPower(0);
@@ -201,7 +207,7 @@ public class PowerPlayPackBot {
         dcMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dcMotor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dcMotor5.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcMotor6.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //dcMotor6.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         dcMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         dcMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -210,7 +216,7 @@ public class PowerPlayPackBot {
         dcMotor4.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         dcMotor5.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dcMotor6.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //dcMotor6.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize installed servos.
         rotisserie = hwMap.get(Servo.class, "rotisserie");
@@ -300,11 +306,11 @@ public class PowerPlayPackBot {
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //Math is incorrect. Counts are easy.
         while (!opMode.isStopRequested() && posCurrent < targetCt) {
             dcMotor5.setPower(speed);
-            dcMotor6.setPower(speed);
+            //dcMotor6.setPower(speed);
             posCurrent = dcMotor5.getCurrentPosition();
         }
         dcMotor5.setPower(0);
-        dcMotor6.setPower(0);
+        //dcMotor6.setPower(0);
     }
 
 
@@ -314,11 +320,11 @@ public class PowerPlayPackBot {
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //see above comment
         while (!opMode.isStopRequested() && posCurrent > targetCt) {
             dcMotor5.setPower(-speed);
-            dcMotor6.setPower(-speed);
+            //dcMotor6.setPower(-speed);
             posCurrent = dcMotor5.getCurrentPosition();
         }
         dcMotor5.setPower(0);
-        dcMotor6.setPower(0);
+        //dcMotor6.setPower(0);
     }
     
     public void driveToDist(LinearOpMode opMode, String sensor, double inchDist, double driveSpeed) {

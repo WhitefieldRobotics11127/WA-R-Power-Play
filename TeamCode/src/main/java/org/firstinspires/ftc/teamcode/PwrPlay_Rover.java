@@ -177,7 +177,7 @@ public class PwrPlay_Rover extends OpMode {
         /** GAMEPAD 2 */
 
         robot.dcMotor5.setPower(gamepad2.right_stick_y);
-        robot.dcMotor6.setPower(gamepad2.right_stick_y);
+        //robot.dcMotor6.setPower(gamepad2.right_stick_y);
 
         //Bumpers open/close the 2 sides simultaneously
         if (gamepad2.left_bumper){
@@ -189,7 +189,8 @@ public class PwrPlay_Rover extends OpMode {
             chickenPos = PowerPlayPackBot.chickenClosed;
         }
 
-        //Buttons open/close them separately
+        /*
+        //Buttons open/close the two sides of the grabber separately
         if (gamepad2.a){
             chickenPos = PowerPlayPackBot.chickenOpen;
             //robot.chicken.setPosition(PowerPlayPackBot.chickenOpen);
@@ -206,6 +207,7 @@ public class PwrPlay_Rover extends OpMode {
             rotisseriePos = PowerPlayPackBot.rotisserieClosed;
             //robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
         }
+        */
 
         robot.rotisserie.setPosition(rotisseriePos);
         robot.chicken.setPosition(chickenPos);
