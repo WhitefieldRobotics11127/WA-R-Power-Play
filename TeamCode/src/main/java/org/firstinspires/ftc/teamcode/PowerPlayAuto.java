@@ -365,7 +365,6 @@ public class    PowerPlayAuto {
         }
     }
 
-    //Test commit
     public void scanMedParkRight(){
         double driveSpeed = 0.4;
         double liftSpeed = 0.3;
