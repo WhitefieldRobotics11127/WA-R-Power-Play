@@ -68,8 +68,8 @@ public class PwrPlay_Rover extends OpMode {
 
     boolean sprinting = false;
 
-    double rotisseriePos = 0.0;
-    double chickenPos = 0.0;
+    double rotisseriePos = PowerPlayPackBot.rotisserieOpen;
+    double chickenPos = PowerPlayPackBot.rotisserieClosed;
 
     double defLiftPwr = 0;
     double liftHoldPower = .15;
@@ -180,14 +180,21 @@ public class PwrPlay_Rover extends OpMode {
         //robot.dcMotor6.setPower(gamepad2.right_stick_y);
 
         //Bumpers open/close the 2 sides simultaneously
-        if (gamepad2.left_bumper){
+        if (gamepad2.right_bumper){
             rotisseriePos = PowerPlayPackBot.rotisserieOpen;
-            chickenPos = PowerPlayPackBot.chickenOpen;
         }
         if (gamepad2.right_bumper){
+            chickenPos = PowerPlayPackBot.chickenOpen;
+        }
+        if (gamepad2.left_bumper){
             rotisseriePos = PowerPlayPackBot.rotisserieClosed;
+        }
+        if (gamepad2.left_bumper){
             chickenPos = PowerPlayPackBot.chickenClosed;
         }
+
+        robot.rotisserie.setPosition(rotisseriePos);
+        robot.chicken.setPosition(chickenPos);
 
         /*
         //Buttons open/close the two sides of the grabber separately
@@ -208,9 +215,6 @@ public class PwrPlay_Rover extends OpMode {
             //robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
         }
         */
-
-        robot.rotisserie.setPosition(rotisseriePos);
-        robot.chicken.setPosition(chickenPos);
 
 //        if (gamepad2.left_stick_button)
 //            lifty_speed = .3;
