@@ -180,21 +180,16 @@ public class PwrPlay_Rover extends OpMode {
         //robot.dcMotor6.setPower(gamepad2.right_stick_y);
 
         //Bumpers open/close the 2 sides simultaneously
+
         if (gamepad2.right_bumper){
-            rotisseriePos = PowerPlayPackBot.rotisserieOpen;
-        }
-        if (gamepad2.right_bumper){
-            chickenPos = PowerPlayPackBot.chickenOpen;
-        }
-        if (gamepad2.left_bumper){
-            rotisseriePos = PowerPlayPackBot.rotisserieClosed;
-        }
-        if (gamepad2.left_bumper){
-            chickenPos = PowerPlayPackBot.chickenClosed;
+            robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
+            robot.chicken.setPosition(PowerPlayPackBot.chickenOpen);
         }
 
-        robot.rotisserie.setPosition(rotisseriePos);
-        robot.chicken.setPosition(chickenPos);
+        if (gamepad2.left_bumper){
+            robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+            robot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
+        }
 
         /*
         //Buttons open/close the two sides of the grabber separately
