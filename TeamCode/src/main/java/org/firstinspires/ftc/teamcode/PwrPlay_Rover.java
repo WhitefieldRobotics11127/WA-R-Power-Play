@@ -54,7 +54,8 @@ public class PwrPlay_Rover extends OpMode {
     //variables
     double heading;
 
-    double forward, rotate, strafe, direction = 1; //direction: 1 is normal, -1 is reversed
+    // We had to change the direction this year because of the orientation of the motors
+    double forward, rotate, strafe, direction = -1; //direction: 1 is normal, -1 is reversed
     double gear = .5;
 
     double currStrafeCt, currStraightCt;

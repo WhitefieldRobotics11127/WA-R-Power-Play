@@ -131,7 +131,7 @@ public class PowerPlayPackBot {
     public static final double rotisserieOpen = 0.9;
     public static final double rotisserieClosed = 0.6;
     public static final double chickenOpen = 0.5;
-    public static final double chickenClosed = 0.9;
+    public static final double chickenClosed = 0.8;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
@@ -184,12 +184,6 @@ public class PowerPlayPackBot {
         // This might just be for this year.
         dcMotor5.setDirection(DcMotor.Direction.REVERSE);
         //dcMotor6.setDirection(DcMotor.Direction.REVERSE);
-
-        //Setting the motors upright may have changed the way the wheels rotate
-        dcMotor1.setDirection(DcMotor.Direction.REVERSE);
-        dcMotor2.setDirection(DcMotor.Direction.REVERSE);
-        dcMotor3.setDirection(DcMotor.Direction.REVERSE);
-        dcMotor4.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
         dcMotor1.setPower(0);
