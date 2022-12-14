@@ -367,7 +367,7 @@ public class    PowerPlayAuto {
 
     public void scanMedParkRight(){
         double driveSpeed = 0.4;
-        double liftSpeed = 0.3;
+        double liftSpeed = 0.6;
         int sleepTime = 450;
         String side = "right";
 
@@ -376,38 +376,38 @@ public class    PowerPlayAuto {
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 19, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 44.65, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         String result = scan(side);
 
-        myRobot.advancedEncoderDrive(myOpMode, 18, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 42.3, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 24, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 23.5, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 37, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 91.65, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
         //Move forward a little to reach the junction
-        myRobot.advancedEncoderDrive(myOpMode, 4, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 1, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         openGrabber();
         myOpMode.sleep(sleepTime);
 
         //Move backward a little to clear the junction
-        myRobot.advancedEncoderDrive(myOpMode, 4, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 1, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.groundHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 10, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 23.5, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         // Pick up another cone and place it on the high

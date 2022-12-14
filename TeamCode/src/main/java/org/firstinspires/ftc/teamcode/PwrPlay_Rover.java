@@ -54,8 +54,7 @@ public class PwrPlay_Rover extends OpMode {
     //variables
     double heading;
 
-    // We had to change the direction this year because of the orientation of the motors
-    double forward, rotate, strafe, direction = -1; //direction: 1 is normal, -1 is reversed
+    double forward, rotate, strafe, direction = 1; //direction: 1 is normal, -1 is reversed
     double gear = .5;
 
     double currStrafeCt, currStraightCt;
@@ -114,6 +113,9 @@ public class PwrPlay_Rover extends OpMode {
 
 
         /** GAMEPAD 1 */
+
+        telemetry.addData("Encoder value: ", robot.dcMotor5.getCurrentPosition());
+        telemetry.update();
 
         if (gamepad1.a)
             gear = .7;
@@ -177,7 +179,7 @@ public class PwrPlay_Rover extends OpMode {
 
         /** GAMEPAD 2 */
 
-        robot.dcMotor5.setPower(gamepad2.right_stick_y);
+        robot.dcMotor5.setPower(-gamepad2.right_stick_y);
         //robot.dcMotor6.setPower(gamepad2.right_stick_y);
 
         //Bumpers open/close the 2 sides simultaneously

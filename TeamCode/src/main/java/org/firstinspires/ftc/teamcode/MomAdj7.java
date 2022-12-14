@@ -57,7 +57,7 @@ public class MomAdj7 extends LinearOpMode {
             telemetry.addData("Starting Method", "");
             telemetry.update();
 
-            robot.advancedEncoderDrive(this, 36, "Forward", .7);
+            robot.advancedEncoderDrive(this, 24, "Forward", .7);
 
             while (!isStopRequested())
                 sleep(1);

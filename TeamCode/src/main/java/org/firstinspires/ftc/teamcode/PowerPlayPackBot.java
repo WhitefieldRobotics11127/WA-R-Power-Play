@@ -135,11 +135,11 @@ public class PowerPlayPackBot {
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
-    public static final double groundHeight = 110;
+    public static final double groundHeight = 310;
     public static final double coneStack = 1000;
     // public static final double updatedConeStack = coneStack;
     public static final double lowHeight = 1210; //encoder counts
-    public static final double middleHeight = 2270; //encoder counts
+    public static final double middleHeight = 2570; //encoder counts
     public static final double topHeight = 3150; //encoder counts
 
     /* Local OpMode members. */
@@ -177,13 +177,12 @@ public class PowerPlayPackBot {
         //dcMotor6 = hwMap.get(DcMotor.class, "motor_lift1");
 
         // This is what lets us be an omnidirectional bot
-        dcMotor1.setDirection(DcMotor.Direction.REVERSE);
-        dcMotor3.setDirection(DcMotor.Direction.REVERSE);
+        //dcMotor1.setDirection(DcMotor.Direction.REVERSE);
+        //dcMotor3.setDirection(DcMotor.Direction.REVERSE);
 //        dcMotor7.setDirection(DcMotor.Direction.REVERSE);
 
-        // This might just be for this year.
-        dcMotor5.setDirection(DcMotor.Direction.REVERSE);
-        //dcMotor6.setDirection(DcMotor.Direction.REVERSE);
+        dcMotor2.setDirection(DcMotor.Direction.REVERSE);
+        dcMotor4.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
         dcMotor1.setPower(0);
@@ -295,13 +294,13 @@ public class PowerPlayPackBot {
     */
 
     public void moveLiftUp(LinearOpMode opMode, double targetCt, double speed) {
-        int posCurrent = dcMotor5.getCurrentPosition();
+        int posCurrent = -(dcMotor5.getCurrentPosition());
         // Converts the vertical distance to diagonal distance using trig.
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //Math is incorrect. Counts are easy.
         while (!opMode.isStopRequested() && posCurrent < targetCt) {
             dcMotor5.setPower(speed);
             //dcMotor6.setPower(speed);
-            posCurrent = dcMotor5.getCurrentPosition();
+            posCurrent = -(dcMotor5.getCurrentPosition());
         }
         dcMotor5.setPower(0);
         //dcMotor6.setPower(0);
@@ -309,13 +308,13 @@ public class PowerPlayPackBot {
 
 
     public void moveLiftDown(LinearOpMode opMode, double targetCt, double speed) {
-        int posCurrent = dcMotor5.getCurrentPosition();
+        int posCurrent = -(dcMotor5.getCurrentPosition());
         // Converts the vertical distance to diagonal distance using trig.
 //        double targetCt = inches * COUNTS_PER_LIFT_INCH /.982; //see above comment
         while (!opMode.isStopRequested() && posCurrent > targetCt) {
             dcMotor5.setPower(-speed);
             //dcMotor6.setPower(-speed);
-            posCurrent = dcMotor5.getCurrentPosition();
+            posCurrent = -(dcMotor5.getCurrentPosition());
         }
         dcMotor5.setPower(0);
         //dcMotor6.setPower(0);
@@ -390,6 +389,7 @@ public class PowerPlayPackBot {
 
     /** @param inchDist must be in inches
      * @param dir possible directions: "Forward", "Backward", "Left", "Right" */
+    // For some reason left/right movement is off by a factor of 2.35? Idk why yet.
     public void encoderDrive(LinearOpMode opMode, double inchDist, String dir, double driveSpeed) {
         //add rampSpeed in instead of driveSpeed
         double targetCt = inchDist * COUNTS_PER_INCH *.9;
@@ -438,10 +438,11 @@ public class PowerPlayPackBot {
      * @param direction possible directions: "Forward", "Backward", "Left", "Right"
      */
     public void advancedEncoderDrive(LinearOpMode opMode, double distance, String direction, double speed) {
-        double targetCt = distance * COUNTS_PER_INCH * (-.647 * speed + 1.048);
+        double targetCt = distance * COUNTS_PER_INCH * (-.23 * speed + .471); // * (-.647 * speed + 1.048);
         /*
             y = mx + b where m = -.647 and b = 1.048
-            Run the bot at 30% speed (x = 0.3) to a certain distance and record the drift (in inches),
+            To recalibrate:
+            Comment out the part in parentheses. Run the bot at 30% speed (x = 0.3) to a certain distance and record the drift (in inches),
             then run the bot at 70% speed (x = 0.7) to the same distance and record the drift (in
             inches). Your y value for each will be the target distance divided by the actual distance
             it went.
