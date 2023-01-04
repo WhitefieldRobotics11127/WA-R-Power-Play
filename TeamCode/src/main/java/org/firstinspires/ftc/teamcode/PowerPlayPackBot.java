@@ -110,6 +110,7 @@ public class PowerPlayPackBot {
 
     public Servo rotisserie = null;
     public Servo chicken = null;
+    public Servo parmesan = null;
 
     public BNO055IMU imu;
     Orientation angles; //not sure if we need this

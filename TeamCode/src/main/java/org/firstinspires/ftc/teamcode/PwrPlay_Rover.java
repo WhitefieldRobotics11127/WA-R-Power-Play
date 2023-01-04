@@ -179,7 +179,7 @@ public class PwrPlay_Rover extends OpMode {
 
         /** GAMEPAD 2 */
 
-            robot.dcMotor5.setPower(-gamepad2.right_stick_y);
+        robot.dcMotor5.setPower(-gamepad2.right_stick_y);
         //robot.dcMotor6.setPower(gamepad2.right_stick_y);
 
         //Bumpers open/close the 2 sides simultaneously
@@ -191,6 +191,36 @@ public class PwrPlay_Rover extends OpMode {
 
         if (gamepad2.left_bumper){
             robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+            robot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
+        }
+
+        if (gamepad2.back){ //retract the odometer wheels
+            robot.parmesan.setPosition(1); //numbers are here for placeholders right now
+        }
+
+        if (gamepad2.start){ //set the odometer wheels back on the ground
+            robot.parmesan.setPosition(0); //numbers are here for placeholders right now
+        }
+
+        /*
+        These are extra controls for the driver to have greater flexibility when
+        maneuvering the grabber, or in case one side of the grabber fails for some reason:
+            - x opens the left side
+            - y closes the left side
+            - b opens the right side
+            - a closes the right side
+        */
+
+        if(gamepad2.x){
+            robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
+        }
+        if(gamepad2.y){
+            robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
+        }
+        if(gamepad2.b){
+            robot.chicken.setPosition(PowerPlayPackBot.chickenOpen);
+        }
+        if(gamepad2.a){
             robot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
         }
 
