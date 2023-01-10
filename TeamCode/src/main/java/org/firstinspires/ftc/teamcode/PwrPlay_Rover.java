@@ -195,11 +195,13 @@ public class PwrPlay_Rover extends OpMode {
         }
 
         if (gamepad2.back){ //retract the odometer wheels
-            robot.parmesan.setPosition(1); //numbers are here for placeholders right now
+            robot.parmesan.setPosition(1);
+            robot.fowl.setPosition(1);     //numbers are here for placeholders right now
         }
 
         if (gamepad2.start){ //set the odometer wheels back on the ground
-            robot.parmesan.setPosition(0); //numbers are here for placeholders right now
+            robot.parmesan.setPosition(0);
+            robot.fowl.setPosition(0);     //numbers are here for placeholders right now
         }
 
         /*

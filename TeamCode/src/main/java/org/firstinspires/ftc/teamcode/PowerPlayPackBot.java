@@ -111,6 +111,7 @@ public class PowerPlayPackBot {
     public Servo rotisserie = null;
     public Servo chicken = null;
     public Servo parmesan = null;
+    public Servo fowl = null;
 
     public BNO055IMU imu;
     Orientation angles; //not sure if we need this
@@ -217,6 +218,8 @@ public class PowerPlayPackBot {
         // Define and initialize installed servos.
         rotisserie = hwMap.get(Servo.class, "rotisserie");
         chicken = hwMap.get(Servo.class, "chicken");
+        parmesan = hwMap.get(Servo.class, "parmesan");
+        fowl = hwMap.get(Servo.class, "fowl");
 
 
         // blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
