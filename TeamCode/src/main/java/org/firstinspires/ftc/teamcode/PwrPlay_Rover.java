@@ -227,24 +227,6 @@ public class PwrPlay_Rover extends OpMode {
         }
 
         /*
-        //Buttons open/close the two sides of the grabber separately
-        if (gamepad2.a){
-            chickenPos = PowerPlayPackBot.chickenOpen;
-            //robot.chicken.setPosition(PowerPlayPackBot.chickenOpen);
-        }
-        if (gamepad2.b){
-            chickenPos = PowerPlayPackBot.chickenClosed;
-            //robot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
-        }
-        if (gamepad2.x){
-            rotisseriePos = PowerPlayPackBot.rotisserieOpen;
-            //robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieOpen);
-        }
-        if (gamepad2.y){
-            rotisseriePos = PowerPlayPackBot.rotisserieClosed;
-            //robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
-        }
-        */
 
 //        if (gamepad2.left_stick_button)
 //            lifty_speed = .3;
