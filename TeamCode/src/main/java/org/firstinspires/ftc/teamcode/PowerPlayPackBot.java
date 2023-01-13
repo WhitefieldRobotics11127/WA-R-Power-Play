@@ -130,10 +130,10 @@ public class PowerPlayPackBot {
     //public static final double rotisserieOpen = 0.4;
 
     //Need to be tested/programmed onto the servos
-    public static final double rotisserieOpen = 0.9; //orig: .9
+    public static final double rotisserieOpen = 0.85; //orig: .9
     public static final double rotisserieClosed = 0.7; //orig: .6
-    public static final double chickenOpen = 0.5;
-    public static final double chickenClosed = 0.82;
+    public static final double chickenOpen = 0.6;
+    public static final double chickenClosed = 0.85;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
@@ -218,8 +218,8 @@ public class PowerPlayPackBot {
         // Define and initialize installed servos.
         rotisserie = hwMap.get(Servo.class, "rotisserie");
         chicken = hwMap.get(Servo.class, "chicken");
-        parmesan = hwMap.get(Servo.class, "parmesan");
-        fowl = hwMap.get(Servo.class, "fowl");
+        //parmesan = hwMap.get(Servo.class, "parmesan");
+        //fowl = hwMap.get(Servo.class, "fowl");
 
 
         // blinkin = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
