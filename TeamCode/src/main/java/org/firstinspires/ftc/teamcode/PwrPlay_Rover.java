@@ -194,6 +194,10 @@ public class PwrPlay_Rover extends OpMode {
             robot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
         }
 
+        if (gamepad2.dpad_down){
+
+        }
+
         /* Odometer wheel retraction:
         if (gamepad2.back){ //retract the odometer wheels
             robot.parmesan.setPosition(1);

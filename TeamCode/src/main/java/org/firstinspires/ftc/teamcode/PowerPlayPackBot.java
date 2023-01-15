@@ -133,7 +133,7 @@ public class PowerPlayPackBot {
     public static final double rotisserieOpen = 0.85; //orig: .9
     public static final double rotisserieClosed = 0.66; //orig: .6
     public static final double chickenOpen = 0.6;
-    public static final double chickenClosed = 0.74;
+    public static final double chickenClosed = 0.85;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;

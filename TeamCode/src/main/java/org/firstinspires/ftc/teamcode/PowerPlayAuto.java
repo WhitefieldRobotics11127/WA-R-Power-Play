@@ -186,7 +186,7 @@ public class    PowerPlayAuto {
         myRobot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
     }
 
-    private String scan(String side){
+    public String scan(String side){
         // Scanner scan = new Scanner(System.in);
 
         float gain = 5;
@@ -365,7 +365,7 @@ public class    PowerPlayAuto {
         String side = "right";
 
         closeGrabber();
-        myOpMode.sleep(3000);
+        myOpMode.sleep(2500);
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.autoGround, liftSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -373,6 +373,7 @@ public class    PowerPlayAuto {
         myOpMode.sleep(sleepTime);
 
         String result = scan(side);
+
 
         myRobot.advancedEncoderDrive(myOpMode, 40, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
@@ -383,6 +384,7 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 93, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
+        /*
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
@@ -399,6 +401,7 @@ public class    PowerPlayAuto {
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
+        */
 
         myRobot.advancedEncoderDrive(myOpMode, 23.5, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
