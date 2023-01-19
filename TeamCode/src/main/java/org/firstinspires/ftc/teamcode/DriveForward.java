@@ -61,7 +61,7 @@ public class DriveForward extends LinearOpMode {
             robot.rotisserie.setPosition(PowerPlayPackBot.rotisserieClosed);
             robot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
 
-            robot.advancedEncoderDrive(this, 28, "Backward", .4);
+            robot.advancedEncoderDrive(this, 28, "Forward", .4);
 
             while (!isStopRequested())
                 sleep(1);

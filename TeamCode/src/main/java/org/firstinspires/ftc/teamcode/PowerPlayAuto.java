@@ -365,8 +365,8 @@ public class    PowerPlayAuto {
         String side = "right";
 
         closeGrabber();
-        myOpMode.sleep(2500);
-        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.autoGround, liftSpeed);
+        myOpMode.sleep(sleepTime);
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.advancedEncoderDrive(myOpMode, 44.65, "Left", driveSpeed);
@@ -374,22 +374,19 @@ public class    PowerPlayAuto {
 
         String result = scan(side);
 
-
         myRobot.advancedEncoderDrive(myOpMode, 40, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 43, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 42, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 93, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 95, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        /*
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        //Move forward a little to reach the junction
-        myRobot.advancedEncoderDrive(myOpMode, .5, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 2, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         openGrabber();
@@ -401,9 +398,9 @@ public class    PowerPlayAuto {
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
-        */
 
-        myRobot.advancedEncoderDrive(myOpMode, 23.5, "Left", driveSpeed);
+
+        myRobot.advancedEncoderDrive(myOpMode, 24.5, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         // Pick up another cone and place it on the high
@@ -483,7 +480,7 @@ public class    PowerPlayAuto {
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Blue")){
-            myRobot.advancedEncoderDrive(myOpMode, 15, "Forward", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 20, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Green")){

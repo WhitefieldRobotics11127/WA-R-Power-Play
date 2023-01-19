@@ -137,14 +137,14 @@ public class PowerPlayPackBot {
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
-    public static final double groundHeight = 310;
-    public static final double autoGround = 730; //Right now, if you move the slide up just a little in auto, it goes back down due to gravity.
+    public static final double groundHeight = 320;
+    public static final double autoGround = 900; //Right now, if you move the slide up just a little in auto, it goes back down due to gravity.
     public static final double coneStack = 475; // When there are 5 cones
-    public static final double coneStackClear = 1320;
+    public static final double coneStackClear = 1330;
     // public static final double updatedConeStack = coneStack;
-    public static final double lowHeight = 1770; //encoder counts
-    public static final double middleHeight = 2680; //encoder counts
-    public static final double topHeight = 3810; //encoder counts
+    public static final double lowHeight = 1780; //encoder counts
+    public static final double middleHeight = 2690; //encoder counts
+    public static final double topHeight = 3820; //encoder counts
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;
