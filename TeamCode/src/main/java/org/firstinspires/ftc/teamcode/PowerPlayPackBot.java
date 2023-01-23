@@ -131,20 +131,20 @@ public class PowerPlayPackBot {
 
     //Need to be tested/programmed onto the servos
     public static final double rotisserieOpen = 0.85; //orig: .9
-    public static final double rotisserieClosed = 0.66; //orig: .6
+    public static final double rotisserieClosed = 0.69; //orig: .6
     public static final double chickenOpen = 0.6;
-    public static final double chickenClosed = 0.85;
+    public static final double chickenClosed = 0.91;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
-    public static final double groundHeight = 320;
-    public static final double autoGround = 900; //Right now, if you move the slide up just a little in auto, it goes back down due to gravity.
-    public static final double coneStack = 475; // When there are 5 cones
-    public static final double coneStackClear = 1330;
+    public static final double groundHeight = 330;
+    public static final double autoGround = 910; //Right now, if you move the slide up just a little in auto, it goes back down due to gravity.
+    public static final double coneStack = 485; // When there are 5 cones
+    public static final double coneStackClear = 1430;
     // public static final double updatedConeStack = coneStack;
-    public static final double lowHeight = 1780; //encoder counts
-    public static final double middleHeight = 2690; //encoder counts
-    public static final double topHeight = 3820; //encoder counts
+    public static final double lowHeight = 1790; //encoder counts
+    public static final double middleHeight = 2700; //encoder counts
+    public static final double topHeight = 3830; //encoder counts
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;
