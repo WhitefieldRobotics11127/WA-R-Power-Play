@@ -143,8 +143,9 @@ public class PowerPlayPackBot {
     public static final double coneStackClear = 1430;
     // public static final double updatedConeStack = coneStack;
     public static final double lowHeight = 1790; //encoder counts
-    public static final double middleHeight = 2740; //encoder counts
+    public static final double middleHeight = 2840; //encoder counts
     public static final double topHeight = 3830; //encoder counts
+    //MARIN: UPLOAD CODE TO ROBOT AGAIN
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;
