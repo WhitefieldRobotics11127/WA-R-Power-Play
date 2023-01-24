@@ -248,7 +248,7 @@ public class    PowerPlayAuto {
 
     public void scanMedParkLeft(){
         double driveSpeed = 0.4;
-        double liftSpeed = 0.6;
+        double liftSpeed = 0.7;
         int sleepTime = 450;
         String side = "left";
 
@@ -265,22 +265,25 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 40, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 41.5, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 34.5, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 95, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 83, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 2, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 3, "Forward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
 
         openGrabber();
         myOpMode.sleep(sleepTime);
 
-        //move backward a little to clear the junction
-        myRobot.advancedEncoderDrive(myOpMode, 1, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 3, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
@@ -342,9 +345,7 @@ public class    PowerPlayAuto {
         // Park - will change direction if we add the high junction
 
         if (result.equals("Red")) {
-            myRobot.advancedEncoderDrive(myOpMode, 95, "Forward", driveSpeed);
-            myOpMode.sleep(sleepTime);
-            myRobot.advancedEncoderDrive(myOpMode, 4, "Left", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 92.5, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Blue")){
@@ -358,7 +359,7 @@ public class    PowerPlayAuto {
 
     public void scanMedParkRight(){
         double driveSpeed = 0.4;
-        double liftSpeed = 0.6;
+        double liftSpeed = 0.7;
         int sleepTime = 450;
         String side = "right";
 
