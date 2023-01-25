@@ -145,7 +145,6 @@ public class PowerPlayPackBot {
     public static final double lowHeight = 1790; //encoder counts
     public static final double middleHeight = 2840; //encoder counts
     public static final double topHeight = 3830; //encoder counts
-    //MARIN: UPLOAD CODE TO ROBOT AGAIN
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;
