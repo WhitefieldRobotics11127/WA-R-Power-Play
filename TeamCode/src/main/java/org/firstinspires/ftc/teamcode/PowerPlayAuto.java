@@ -268,16 +268,22 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 40, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 38, "Backward", driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 83, "Right", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 40, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 1, "Forward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 84, "Right", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 1, "Backward", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.topHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 1.5, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         openGrabber();
@@ -379,28 +385,30 @@ public class    PowerPlayAuto {
         myRobot.advancedEncoderDrive(myOpMode, 40, "Right", driveSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 40, "Backward", driveSpeed);
-        myOpMode.sleep(sleepTime);
-
-        myRobot.advancedEncoderDrive(myOpMode, 95, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 42, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
         myOpMode.sleep(sleepTime);
 
-        myRobot.advancedEncoderDrive(myOpMode, 2, "Left", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 92, "Left", driveSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.topHeight, liftSpeed);
+        myOpMode.sleep(sleepTime);
+
+        myRobot.advancedEncoderDrive(myOpMode, 0.25, "Forward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         openGrabber();
         myOpMode.sleep(sleepTime);
 
         //Move backward a little to clear the junction
-        myRobot.advancedEncoderDrive(myOpMode, 1, "Backward", driveSpeed);
+        myRobot.advancedEncoderDrive(myOpMode, 0.5, "Backward", driveSpeed);
         myOpMode.sleep(sleepTime);
 
         myRobot.moveLiftDown(myOpMode, PowerPlayPackBot.coneStack, liftSpeed);
         myOpMode.sleep(sleepTime);
-
 
         myRobot.advancedEncoderDrive(myOpMode, 24.5, "Left", driveSpeed);
         myOpMode.sleep(sleepTime);
@@ -479,16 +487,15 @@ public class    PowerPlayAuto {
         // Park - will change direction if we add placing on the high junction
 
         if (result.equals("Red")) {
+            myRobot.advancedEncoderDrive(myOpMode, 1, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Blue")){
-            myRobot.advancedEncoderDrive(myOpMode, 40, "Forward", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 43, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
         if (result.equals("Green")){
-            myRobot.advancedEncoderDrive(myOpMode, 95, "Forward", driveSpeed);
-            myOpMode.sleep(sleepTime);
-            myRobot.advancedEncoderDrive(myOpMode, 4, "Right", driveSpeed);
+            myRobot.advancedEncoderDrive(myOpMode, 98, "Forward", driveSpeed);
             myOpMode.sleep(sleepTime);
         }
     }

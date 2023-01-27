@@ -130,10 +130,10 @@ public class PowerPlayPackBot {
     //public static final double rotisserieOpen = 0.4;
 
     //Need to be tested/programmed onto the servos
-    public static final double rotisserieOpen = 0.85; //orig: .9
-    public static final double rotisserieClosed = 0.69; //orig: .6
-    public static final double chickenOpen = 0.6;
-    public static final double chickenClosed = 0.92;
+    public static final double rotisserieOpen = 0.8; //orig: .9
+    public static final double rotisserieClosed = 0.71; //orig: .6
+    public static final double chickenOpen = 0.52;
+    public static final double chickenClosed = 0.68;
 
     //These will change, constants for the junctions.
     public static final double restHeight = 50;
@@ -143,13 +143,12 @@ public class PowerPlayPackBot {
     public static final double coneStackClear = 1430;
     // public static final double updatedConeStack = coneStack;
     public static final double lowHeight = 1790; //encoder counts
-    public static final double middleHeight = 2840; //encoder counts
+    public static final double middleHeight = 2860; //encoder counts
     public static final double topHeight = 3830; //encoder counts
 
     /* Local OpMode members. */
     HardwareMap hwMap = null;
     private ElapsedTime period = new ElapsedTime();
-    int test = 0;
 
 
 
