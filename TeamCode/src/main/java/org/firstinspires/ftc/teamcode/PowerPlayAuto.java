@@ -252,6 +252,9 @@ public class    PowerPlayAuto {
         int sleepTime = 450;
         String side = "left";
 
+        myRobot.parmesan.setPosition(0);
+        myRobot.fowl.setPosition(0);
+
         closeGrabber();
         myOpMode.sleep(sleepTime);
         myRobot.moveLiftUp(myOpMode, PowerPlayPackBot.middleHeight, liftSpeed);
@@ -359,6 +362,9 @@ public class    PowerPlayAuto {
         double liftSpeed = 0.7;
         int sleepTime = 450;
         String side = "right";
+
+        myRobot.parmesan.setPosition(0);
+        myRobot.fowl.setPosition(0);
 
         closeGrabber();
         myOpMode.sleep(sleepTime);

@@ -179,7 +179,7 @@ public class PwrPlay_Rover extends OpMode {
 
         /** GAMEPAD 2 */
 
-        robot.dcMotor5.setPower(-gamepad2.right_stick_y);
+        robot.dcMotor5.setPower(-gamepad2.left_stick_y);
         //robot.dcMotor6.setPower(gamepad2.right_stick_y);
 
         //Bumpers open/close the 2 sides simultaneously
@@ -194,11 +194,7 @@ public class PwrPlay_Rover extends OpMode {
             robot.chicken.setPosition(PowerPlayPackBot.chickenClosed);
         }
 
-        if (gamepad2.dpad_down){
 
-        }
-
-        /* Odometer wheel retraction:
         if (gamepad2.back){ //retract the odometer wheels
             robot.parmesan.setPosition(1);
             robot.fowl.setPosition(1);     //numbers are here for placeholders right now
